@@ -12,39 +12,36 @@
     <Filter Include="Classes\cmd">
       <UniqueIdentifier>{07cb8276-3c62-419b-a560-b2ff8b5db510}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\model">
+    <Filter Include="Classes\client">
+      <UniqueIdentifier>{1a7b242a-a6e4-4fae-b99b-19d89af476d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\client\view">
+      <UniqueIdentifier>{2c1ddfbc-e630-4f79-acae-a9b3ff19c411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\client\model">
       <UniqueIdentifier>{19353864-c73b-4cbc-b5c0-6da8da202703}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\view">
-      <UniqueIdentifier>{2c1ddfbc-e630-4f79-acae-a9b3ff19c411}</UniqueIdentifier>
+    <Filter Include="Classes\server">
+      <UniqueIdentifier>{2b563f4d-f9bf-4019-aec6-10f4394498ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\model\GameLogic.cpp">
-      <Filter>Classes\model</Filter>
+      <Filter>Classes\client\model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\AppMacros.h">
-      <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\cmd\CMD_ZaJinHua.h">
       <Filter>Classes\cmd</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\model\GameLogic.h">
-      <Filter>Classes\model</Filter>
+      <Filter>Classes\client\model</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Config.h">
       <Filter>Classes</Filter>
