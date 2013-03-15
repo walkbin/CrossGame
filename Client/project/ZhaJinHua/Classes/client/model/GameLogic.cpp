@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 //扑克数据
-BYTE CGameLogic::m_cbCardListData[52]=
+BYTE GameLogic::m_cbCardListData[52]=
 {
 	0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,	//方块 A - K
 	0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1A,0x1B,0x1C,0x1D,	//梅花 A - K
@@ -14,17 +14,17 @@ BYTE CGameLogic::m_cbCardListData[52]=
 //////////////////////////////////////////////////////////////////////////
 
 //构造函数
-CGameLogic::CGameLogic()
+GameLogic::GameLogic()
 {
 }
 
 //析构函数
-CGameLogic::~CGameLogic()
+GameLogic::~GameLogic()
 {
 }
 
 //获取类型
-BYTE CGameLogic::GetCardType(BYTE cbCardData[], BYTE cbCardCount)
+BYTE GameLogic::GetCardType(BYTE cbCardData[], BYTE cbCardCount)
 {
 	CCAssert(cbCardCount==MAX_COUNT,"");
 
@@ -109,7 +109,7 @@ BYTE CGameLogic::GetCardType(BYTE cbCardData[], BYTE cbCardCount)
 }
 
 //排列扑克
-void CGameLogic::SortCardList(BYTE cbCardData[], BYTE cbCardCount)
+void GameLogic::SortCardList(BYTE cbCardData[], BYTE cbCardCount)
 {
 	//转换数值
 	BYTE cbLogicValue[MAX_COUNT];
@@ -143,7 +143,7 @@ void CGameLogic::SortCardList(BYTE cbCardData[], BYTE cbCardCount)
 }
 
 //混乱扑克
-void CGameLogic::RandCardList(BYTE cbCardBuffer[], BYTE cbBufferCount)
+void GameLogic::RandCardList(BYTE cbCardBuffer[], BYTE cbBufferCount)
 {
 	//混乱准备
 	BYTE cbCardData[CountArray(m_cbCardListData)];
@@ -162,7 +162,7 @@ void CGameLogic::RandCardList(BYTE cbCardBuffer[], BYTE cbBufferCount)
 }
 
 //逻辑数值
-BYTE CGameLogic::GetCardLogicValue(BYTE cbCardData)
+BYTE GameLogic::GetCardLogicValue(BYTE cbCardData)
 {
 	//扑克属性
 	BYTE bCardColor=GetCardColor(cbCardData);
@@ -173,7 +173,7 @@ BYTE CGameLogic::GetCardLogicValue(BYTE cbCardData)
 }
 
 //对比扑克
-BYTE CGameLogic::CompareCard(BYTE cbFirstData[], BYTE cbNextData[], BYTE cbCardCount)
+BYTE GameLogic::CompareCard(BYTE cbFirstData[], BYTE cbNextData[], BYTE cbCardCount)
 {
 	//设置变量
 	BYTE FirstData[MAX_COUNT],NextData[MAX_COUNT];

@@ -26,7 +26,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 //游戏逻辑类
-class CGameLogic
+class GameLogic
 {
 	//变量定义
 private:
@@ -35,9 +35,9 @@ private:
 	//函数定义
 public:
 	//构造函数
-	CGameLogic();
+	GameLogic();
 	//析构函数
-	virtual ~CGameLogic();
+	virtual ~GameLogic();
 
 	//类型函数
 public:
