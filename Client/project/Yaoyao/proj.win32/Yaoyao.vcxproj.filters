@@ -24,6 +24,9 @@
     <Filter Include="Classes\assist">
       <UniqueIdentifier>{17b1f5d2-7f04-4daa-8a5e-da8562e5afb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\common">
+      <UniqueIdentifier>{00b30a56-39f1-4486-b768-41c0013f079e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,6 +46,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\model\Hole.cpp">
       <Filter>Classes\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common\ControlButtonLoader.cpp">
+      <Filter>Classes\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common\LabelBMFontLoader.cpp">
+      <Filter>Classes\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common\LabelTTFLoader.cpp">
+      <Filter>Classes\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common\LanguageMan.cpp">
+      <Filter>Classes\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common\Layer.cpp">
+      <Filter>Classes\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common\NodeLoaderLibrary.cpp">
+      <Filter>Classes\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\common\Scene.cpp">
+      <Filter>Classes\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +93,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\config\Global.h">
       <Filter>Classes\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common\ControlButtonLoader.h">
+      <Filter>Classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common\LabelBMFontLoader.h">
+      <Filter>Classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common\LabelTTFLoader.h">
+      <Filter>Classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common\LanguageMan.h">
+      <Filter>Classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common\Layer.h">
+      <Filter>Classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common\NodeLoaderLibrary.h">
+      <Filter>Classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\common\Scene.h">
+      <Filter>Classes\common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
