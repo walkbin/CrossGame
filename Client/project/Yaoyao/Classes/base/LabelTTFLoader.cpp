@@ -25,7 +25,7 @@ void TacLabelTTFLoader::onHandlePropTypeText(CCNode * pNode, CCNode * pParent, c
 	if(strcmp(pPropertyName, PROPERTY_STRING) == 0) 
 	{
 		// 这里需要根据默认的英文版搜索系统对应语言的版本
-		((CCLabelTTF *)pNode)->setString(TacLanguageMan::instance().findTxt(pText).c_str());
+		((CCLabelTTF *)pNode)->setString(LangMgr::instance().findTxt(pText).c_str());
 	} 
 	else 
 	{

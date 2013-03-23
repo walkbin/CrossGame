@@ -84,7 +84,7 @@ void TacNodeLoaderLibrary::registerDefaultCCNodeLoaders()
 	//多国语言
 	registerCCNodeLoader("CCLabelTTF", TacLabelTTFLoader::loader());
 	registerCCNodeLoader("CCLabelBMFont", TacLabelBMFontLoader::loader());
-	registerCCNodeLoader("CCControlButton", TacControlButtonLoader::loader());
+	registerCCNodeLoader("CCControlButton", ControlButtonLoader::loader());
 	//具体项目相关
 	registerCCNodeLoader("BingoboardAni", NumberBallPannelLoader::loader());
 	registerCCNodeLoader("Bingoball", NumberBallLoader::loader());

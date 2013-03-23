@@ -22,7 +22,7 @@ TacLabelBMFontLoader::~TacLabelBMFontLoader(void)
 
 void TacLabelBMFontLoader::onHandlePropTypeText(CCNode * pNode, CCNode * pParent, const char * pPropertyName, const char* pText, CCBReader * pCCBReader) {
 	if(strcmp(pPropertyName, PROPERTY_STRING) == 0) {
-		((CCLabelBMFont *)pNode)->setString(TacLanguageMan::instance().findTxt(pText).c_str());
+		((CCLabelBMFont *)pNode)->setString(LangMgr::instance().findTxt(pText).c_str());
 	} else {
 		CCNodeLoader::onHandlePropTypeText(pNode, pParent, pPropertyName, pText, pCCBReader);
 	}

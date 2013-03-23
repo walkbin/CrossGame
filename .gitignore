@@ -161,3 +161,4 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+/Client/project/Yaoyao/proj.win32/Debug.win32
