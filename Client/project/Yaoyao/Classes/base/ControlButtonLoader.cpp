@@ -32,9 +32,6 @@
 #define PROPERTY_TITLE_HIGHLIGHTED "title|2"
 #define PROPERTY_TITLE_DISABLED "title|3"
 
-USING_NS_CC;
-USING_NS_CC_EXT;
-
 namespace walkbin
 {
     ControlButtonLoader::ControlButtonLoader(void)
@@ -47,7 +44,7 @@ namespace walkbin
 
     void ControlButtonLoader::onHandlePropTypeString(CCNode * pNode, CCNode * pParent, const char * pPropertyName, const char * pString, CCBReader * pCCBReader)
     {
-        std::string strStr = LangMgr::instance().findTxt(pString);
+        std::string strStr = LangMgr::instance()->findTxt(pString);
         const char *convertedStr = strStr.c_str();
         if(strcmp(pPropertyName, PROPERTY_TITLE_NORMAL) == 0) {
             ((CCControlButton *)pNode)->setTitleForState(CCString::create(convertedStr), CCControlStateNormal);

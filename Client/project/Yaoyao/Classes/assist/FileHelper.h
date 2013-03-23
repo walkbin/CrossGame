@@ -1,3 +1,4 @@
+
 /********************************************************************
 	Copyright (c) 2012-2013 walkbin.com
 
@@ -20,48 +21,22 @@
 	THE SOFTWARE.
 
 	created:	2013/03/23
-	filename: 	LangMgr.h
+	filename: 	FileHelper.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
 #pragma once
 
-#include <map>
-#include <string>
+#include "config/Global.h"
+#include <libxml/parser.h>
 
 namespace walkbin
 {
-    typedef enum LangType
-    {
-        LANG_EN,
-        LANG_ZH_S,
-        LANG_ZH_T,
-        LANG_JPN,
-        LANG_FRA,
-        LANG_MAX
-    };
-
-    typedef std::map<int, std::map<int, std::string> > LanMap;
-
-    class LangMgr
+    class FileHelper
     {
     public:
-        static LangMgr* instance();
-        static void killInstance();
-        static void setLang(int langId);
-
-        LangMgr(void);
-        virtual ~LangMgr(void);
-        virtual bool init(int curLan);
-        std::string findTxt(int id);
-        std::string findTxt(std::string englishTxt);
-        std::string findTxt(int id, int language);
-        std::string findTxt(std::string englishTxt, int language);
-        bool isLangSupported(int language) const;
-    private:
-        LanMap m_mapLanguages;
-        int m_nCurLanguage;
-        static LangMgr* s_pMgr;
+        static xmlDocPtr openXml(const char* filename);
+        static bool closeXml(xmlDocPtr pDoc);
     };
 }

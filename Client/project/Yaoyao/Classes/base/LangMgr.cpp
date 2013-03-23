@@ -26,11 +26,12 @@
 	purpose:	
 *********************************************************************/
 #include "LangMgr.h"
-#include <libxml/parser.h>
-#include "platform/CCFileUtils.h"
+#include "assist/FileHelper.h"
 
 namespace walkbin
 {
+    LangMgr* LangMgr::s_pMgr = NULL;
+
     LangMgr::LangMgr(void)
         :m_nCurLanguage(LANG_EN)
     {
@@ -45,84 +46,47 @@ namespace walkbin
         m_nCurLanguage = curLan;
         xmlDocPtr doc;   //定义解析文档指针
         xmlNodePtr curNode;  //定义结点指针(你需要它为了在各个结点间移动)
-        std::string str = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename("internalString.xml");
-        unsigned long size = 0;
-        unsigned char* pBuffer = cocos2d::CCFileUtils::sharedFileUtils()->getFileData(str.c_str(),"rb",&size);
-        if(!pBuffer)
-            return false;
+        bool ret = false;
 
-        doc = xmlReadMemory((const char*)pBuffer,size,str.c_str(), "utf-8", 256);
-        if (NULL == doc)
-        {  
-            CC_SAFE_FREE(pBuffer);
-            return false; 
-        }
-
-        curNode = xmlDocGetRootElement(doc); //确定文档根元素
-
-        if (NULL == curNode)
-        { 
-            //根节点不正确
-            CC_SAFE_FREE(pBuffer);
-            xmlFreeDoc(doc);
-            return false;
-        }
-
-        if (xmlStrcmp(curNode->name, BAD_CAST"Lanuage"))			//建筑物的解析
+        do 
         {
-            //配置不正确
-            CC_SAFE_FREE(pBuffer);
-            xmlFreeDoc(doc);
-            return false;
-        }
-
-        curNode = curNode->xmlChildrenNode;
-        std::map<int, std::string> txtItem;
-
-        while(curNode != NULL)
-        {
-            //取出节点中的内容
-            if ((xmlStrcmp(curNode->name, BAD_CAST"Txt")))
+            doc = FileHelper::openXml("internalString.xml");
+            CC_BREAK_IF(!doc);
+            curNode = xmlDocGetRootElement(doc); //确定文档根元素
+            CC_BREAK_IF(!curNode);
+            CC_BREAK_IF(xmlStrcmp(curNode->name, BAD_CAST"Lanuage"));
+            curNode = curNode->xmlChildrenNode;
+            std::map<int, std::string> txtItem;
+            while(curNode != NULL)
             {
-                curNode = curNode->next;
-                continue;
-            }
+                //取出节点中的内容
+                if ((xmlStrcmp(curNode->name, BAD_CAST"Txt")))
+                {
+                    curNode = curNode->next;
+                    continue;
+                }
 
-            xmlNodePtr propNodePtr = curNode;
-            int id = atoi((const char*)xmlGetProp(propNodePtr,BAD_CAST"id"));
-            if (xmlHasProp(propNodePtr,BAD_CAST"id"))
-            {
+                xmlNodePtr propNodePtr = curNode;
+                int id = atoi((const char*)xmlGetProp(propNodePtr,BAD_CAST"id"));
+                CC_BREAK_IF(!xmlHasProp(propNodePtr,BAD_CAST"id"));
                 m_mapLanguages[id] = txtItem;
-            }
-            else
-            {
-                CC_SAFE_FREE(pBuffer);
-                //必须要有的参数
-                xmlFreeDoc(doc);
-                return false;
-            }
 
-            if (xmlHasProp(propNodePtr,BAD_CAST"english"))
-            {
-                m_mapLanguages[id][LANG_EN] = (const char*)xmlGetProp(propNodePtr,BAD_CAST"english");
+                if (xmlHasProp(propNodePtr,BAD_CAST"english"))
+                    m_mapLanguages[id][LANG_EN] = (const char*)xmlGetProp(propNodePtr,BAD_CAST"english");
+                else if (xmlHasProp(propNodePtr,BAD_CAST"chinese"))
+                    m_mapLanguages[id][LANG_ZH_S] = (const char*)xmlGetProp(propNodePtr,BAD_CAST"chinese");
+                else if (xmlHasProp(propNodePtr,BAD_CAST"japanese"))
+                    m_mapLanguages[id][LANG_JPN] = (const char*)xmlGetProp(propNodePtr,BAD_CAST"japanese");
+
+                curNode = curNode->next;
             }
 
-            if (xmlHasProp(propNodePtr,BAD_CAST"chinese"))
-            {
-                m_mapLanguages[id][LANG_ZH_S] = (const char*)xmlGetProp(propNodePtr,BAD_CAST"chinese");
-            }
+            ret = true;
+        } while (0);
 
-            if (xmlHasProp(propNodePtr,BAD_CAST"japanese"))
-            {
-                m_mapLanguages[id][LANG_JPN] = (const char*)xmlGetProp(propNodePtr,BAD_CAST"japanese");
-            }
-
-            curNode = curNode->next;
-        }
-
-        CC_SAFE_FREE(pBuffer);
-        xmlFreeDoc(doc);
-        return true;
+        if(doc)
+            xmlFreeDoc(doc);
+        return ret;
     }
 
     std::string LangMgr::findTxt(int id)
@@ -164,5 +128,39 @@ namespace walkbin
         if(language < LANG_EN || language >= LANG_MAX)
             return false;
         return true;
+    }
+
+    LangMgr* LangMgr::instance()
+    {
+        if(!s_pMgr)
+        {
+            s_pMgr = new LangMgr();
+            if(s_pMgr && s_pMgr->init(s_pMgr->m_nCurLanguage))
+            {
+                return s_pMgr;
+            }
+            else
+            {
+                CC_SAFE_FREE(s_pMgr);
+                return NULL;
+            }
+        }
+        return s_pMgr;
+    }
+
+    void LangMgr::killInstance()
+    {
+        CC_SAFE_FREE(s_pMgr);
+    }
+
+    void LangMgr::setLang( int langId )
+    {
+        if(s_pMgr->m_nCurLanguage == langId)
+            return;
+
+        killInstance();
+        s_pMgr = new LangMgr();
+        if(s_pMgr)
+            s_pMgr->init(langId);
     }
 }
