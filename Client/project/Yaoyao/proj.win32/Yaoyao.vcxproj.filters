@@ -68,6 +68,12 @@
     <ClCompile Include="..\Classes\base\LangMgr.cpp">
       <Filter>Classes\base</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\assist\DBHelper.cpp">
+      <Filter>Classes\assist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\assist\FileHelper.cpp">
+      <Filter>Classes\assist</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -114,6 +120,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\base\LangMgr.h">
       <Filter>Classes\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\assist\DBHelper.h">
+      <Filter>Classes\assist</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\assist\FileHelper.h">
+      <Filter>Classes\assist</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

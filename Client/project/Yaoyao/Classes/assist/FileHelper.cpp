@@ -20,48 +20,35 @@
 	THE SOFTWARE.
 
 	created:	2013/03/23
-	filename: 	LangMgr.h
+	filename: 	FileHelper.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#pragma once
+#include "FileHelper.h"
 
-#include <map>
-#include <string>
-
-namespace walkbin
+xmlDocPtr walkbin::FileHelper::openXml( const char* filename )
 {
-    typedef enum LangType
+    xmlDocPtr pDoc = NULL;
+
+    std::string str = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename("internalString.xml");
+    unsigned long size = 0;
+    unsigned char* pBuffer = cocos2d::CCFileUtils::sharedFileUtils()->getFileData(str.c_str(),"rb",&size);
+    if(!pBuffer)
+        return NULL;
+
+    pDoc = xmlReadMemory((const char*)pBuffer,size,str.c_str(), "utf-8", 256);
+    CC_SAFE_FREE(pBuffer);
+    return pDoc;
+}
+
+bool walkbin::FileHelper::closeXml( xmlDocPtr pDoc )
+{
+    if(pDoc)
     {
-        LANG_EN,
-        LANG_ZH_S,
-        LANG_ZH_T,
-        LANG_JPN,
-        LANG_FRA,
-        LANG_MAX
-    };
+        xmlFreeDoc(pDoc);
+        return true;
+    }
 
-    typedef std::map<int, std::map<int, std::string> > LanMap;
-
-    class LangMgr
-    {
-    public:
-        static LangMgr* instance();
-        static void killInstance();
-        static void setLang(int langId);
-
-        LangMgr(void);
-        virtual ~LangMgr(void);
-        virtual bool init(int curLan);
-        std::string findTxt(int id);
-        std::string findTxt(std::string englishTxt);
-        std::string findTxt(int id, int language);
-        std::string findTxt(std::string englishTxt, int language);
-        bool isLangSupported(int language) const;
-    private:
-        LanMap m_mapLanguages;
-        int m_nCurLanguage;
-        static LangMgr* s_pMgr;
-    };
+    return false;
 }

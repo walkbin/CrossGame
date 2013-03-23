@@ -27,7 +27,7 @@
 *********************************************************************/
 #pragma once
 
-#include "ccbreader\CCControlButtonLoader.h"
+#include "config/Global.h"
 
 namespace walkbin
 {
