@@ -24,7 +24,7 @@
     <Filter Include="Classes\assist">
       <UniqueIdentifier>{17b1f5d2-7f04-4daa-8a5e-da8562e5afb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\common">
+    <Filter Include="Classes\base">
       <UniqueIdentifier>{00b30a56-39f1-4486-b768-41c0013f079e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -47,26 +47,26 @@
     <ClCompile Include="..\Classes\model\Hole.cpp">
       <Filter>Classes\model</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\common\ControlButtonLoader.cpp">
-      <Filter>Classes\common</Filter>
+    <ClCompile Include="..\Classes\base\BaseScene.cpp">
+      <Filter>Classes\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\common\LabelBMFontLoader.cpp">
-      <Filter>Classes\common</Filter>
+    <ClCompile Include="..\Classes\base\ControlButtonLoader.cpp">
+      <Filter>Classes\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\common\LabelTTFLoader.cpp">
-      <Filter>Classes\common</Filter>
+    <ClCompile Include="..\Classes\base\LabelBMFontLoader.cpp">
+      <Filter>Classes\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\common\LanguageMan.cpp">
-      <Filter>Classes\common</Filter>
+    <ClCompile Include="..\Classes\base\LabelTTFLoader.cpp">
+      <Filter>Classes\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\common\Layer.cpp">
-      <Filter>Classes\common</Filter>
+    <ClCompile Include="..\Classes\base\Layer.cpp">
+      <Filter>Classes\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\common\NodeLoaderLibrary.cpp">
-      <Filter>Classes\common</Filter>
+    <ClCompile Include="..\Classes\base\NodeLoaderLibrary.cpp">
+      <Filter>Classes\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\common\Scene.cpp">
-      <Filter>Classes\common</Filter>
+    <ClCompile Include="..\Classes\base\LangMgr.cpp">
+      <Filter>Classes\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,26 +94,26 @@
     <ClInclude Include="..\Classes\config\Global.h">
       <Filter>Classes\config</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\common\ControlButtonLoader.h">
-      <Filter>Classes\common</Filter>
+    <ClInclude Include="..\Classes\base\BaseScene.h">
+      <Filter>Classes\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\common\LabelBMFontLoader.h">
-      <Filter>Classes\common</Filter>
+    <ClInclude Include="..\Classes\base\ControlButtonLoader.h">
+      <Filter>Classes\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\common\LabelTTFLoader.h">
-      <Filter>Classes\common</Filter>
+    <ClInclude Include="..\Classes\base\LabelBMFontLoader.h">
+      <Filter>Classes\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\common\LanguageMan.h">
-      <Filter>Classes\common</Filter>
+    <ClInclude Include="..\Classes\base\LabelTTFLoader.h">
+      <Filter>Classes\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\common\Layer.h">
-      <Filter>Classes\common</Filter>
+    <ClInclude Include="..\Classes\base\Layer.h">
+      <Filter>Classes\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\common\NodeLoaderLibrary.h">
-      <Filter>Classes\common</Filter>
+    <ClInclude Include="..\Classes\base\NodeLoaderLibrary.h">
+      <Filter>Classes\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\common\Scene.h">
-      <Filter>Classes\common</Filter>
+    <ClInclude Include="..\Classes\base\LangMgr.h">
+      <Filter>Classes\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
