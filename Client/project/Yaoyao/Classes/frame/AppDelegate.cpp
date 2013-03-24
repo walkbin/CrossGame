@@ -10,7 +10,7 @@ using namespace std;
 using namespace walkbin;
 
 AppDelegate::AppDelegate()
-    :m_pUIMgr(new UIMgr)
+    :m_pUIMgr(UIMgr::instance())
     ,m_pLangMgr(LangMgr::instance())
     ,m_pLogic(new MainLogic)
 {
@@ -65,8 +65,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
     // create a scene. it's an autorelease object
-    if(!m_pUIMgr->init())
-        return false;
     CCScene *pScene = m_pUIMgr->getScene();
     // run
     m_pUIMgr->bindLogic(m_pLogic);

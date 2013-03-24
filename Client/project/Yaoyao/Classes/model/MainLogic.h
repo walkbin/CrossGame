@@ -38,7 +38,7 @@ enum LogicState
     STATE_MAX
 };
 
-class MainLogic : public CCObject
+class MainLogic
 {
 public:
     MainLogic();

@@ -42,9 +42,7 @@ class MainLogic;
 enum UINotify
 {
     UI_NOTIFY_BEGIN,
-
     UI_NOTIFY_FRESH_CALL_NUM,
-
     UI_NOTIFY_END
 };
 
@@ -104,10 +102,14 @@ struct UIMsg
 class UIMgr : public CCObject
 {
 public:
+
+    static UIMgr* instance();
+    static void killInstance();
+
     UIMgr();
     virtual ~UIMgr();
-    virtual bool init();
 
+    virtual bool init();
     void bindLogic(MainLogic* pLogic);
     BaseScene* getScene(){return m_pScene;}
     void sendMsg(UIMsg msg);
@@ -129,6 +131,7 @@ protected:
     void syncUI();
 
 private:
+    static UIMgr* s_pUIMgr;
     MainLogic* m_pLogic;
     cocos2d::CCScheduler* m_pScheduler;
     BaseScene* m_pScene;

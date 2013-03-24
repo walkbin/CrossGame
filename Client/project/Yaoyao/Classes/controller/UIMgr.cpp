@@ -37,6 +37,8 @@
 
 NS_WALKBIN_BEGIN
 
+UIMgr* UIMgr::s_pUIMgr = NULL;
+
 UIMgr::UIMgr()
     :m_pScheduler(CCDirector::sharedDirector()->getScheduler())
     ,m_pScene(NULL)
@@ -179,7 +181,7 @@ const char* UIMgr::getFileNameById( UIView layerId )
     case UI_LOGO:
         return "logolayer.ccbi";
     case UI_LOADING:
-        return "LoadingScene.ccbi";
+        return "loadinglayer.ccbi";
     default:
         CCAssert(1,"UIManager::getFileNameById");
         return NULL;
@@ -260,6 +262,28 @@ void UIMgr::bindLogic( MainLogic* pLogic )
 {
     CCAssert(pLogic,"");
     m_pLogic = pLogic;
+}
+
+UIMgr* UIMgr::instance()
+{
+    if(!s_pUIMgr)
+    {
+        s_pUIMgr = new UIMgr;
+        if(s_pUIMgr && s_pUIMgr->init())
+            return s_pUIMgr;
+        else
+        {
+            CC_SAFE_DELETE(s_pUIMgr);
+            return NULL;
+        }
+    }
+
+    return s_pUIMgr;
+}
+
+void UIMgr::killInstance()
+{
+    CC_SAFE_DELETE(s_pUIMgr);
 }
 
 NS_WALKBIN_END

@@ -26,6 +26,7 @@
 	purpose:	
 *********************************************************************/
 #include "LayerLogo.h"
+#include "controller/UIMgr.h"
 
 NS_WALKBIN_BEGIN
 
@@ -37,6 +38,17 @@ LayerLogo::LayerLogo()
 LayerLogo::~LayerLogo()
 {
 
+}
+
+bool LayerLogo::init()
+{
+    scheduleOnce(schedule_selector(LayerLogo::timercb),2.0f);
+    return true;
+}
+
+void LayerLogo::timercb( float dt )
+{
+    
 }
 
 NS_WALKBIN_END
