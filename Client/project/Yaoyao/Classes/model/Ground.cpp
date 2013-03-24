@@ -26,47 +26,12 @@
 	purpose:	
 *********************************************************************/
 #include "Ground.h"
-#include "Hole.h"
-
 
 Ground::Ground()
 {
-
+    
 }
 
 Ground::~Ground()
 {
-    m_mHoles.clear();
 }
-
-bool Ground::addHole( CCPoint pos )
-{
-    Hole* pHole = Hole::create(pos);
-    if(!pHole)
-        return false;
-
-    m_mHoles.insert(std::make_pair(pos,pHole));
-}
-
-int Ground::getHoleCnts()
-{
-    return m_mHoles.size();
-}
-
-const Hole* Ground::getHole( int idx )
-{
-    CCAssert(idx >= 0 && idx < getHoleCnts(),"");
-
-
-    return NULL;
-}
-
-const Hole* Ground::getHole( CCPoint pos )
-{
-   GROUD_HOLE_PAIR::iterator it = m_mHoles.find(pos);
-   if(it == m_mHoles.end())
-       return NULL;
-   else
-       return it->second;
-}
-

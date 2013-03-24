@@ -28,22 +28,11 @@
 #pragma once
 #include "config/Global.h"
 
-class Hole;
-
-typedef  std::map<CCPoint,Hole*> GROUD_HOLE_PAIR;
-
 class Ground : public CCObject
 {
 public:
     Ground();
     ~Ground();
 
-    //-1.0f~1.0f
-    bool addHole(CCPoint pos);
-    int getHoleCnts();
-    const Hole* getHole(int idx);
-    const Hole* getHole(CCPoint pos);
-
 private:
-    GROUD_HOLE_PAIR m_mHoles;
 };

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by richie_wang (tacoty_menue) -->
+<Lanuage>
+	<Txt id="1000" english="Wrong password" chinese="Wrong password" japanese="Wrong password"/>
+	<Txt id="1001" english="Account name doesn't exist." chinese="Account name doesn't exist." japanese="Account name doesn't exist."/>
+	<Txt id="1002" english="The server is under maintenance,&#x000A;Please login into the game later.&#x000A;Sorry for any inconvenience caused." chinese="The server is under maintenance,&#x000A;Please login into the game later.&#x000A;Sorry for any inconvenience caused." japanese="The server is under maintenance,&#x000A;Please login into the game later.&#x000A;Sorry for any inconvenience caused."/>
+	<Txt id="1003" english="Passwords do not match." chinese="Passwords do not match." japanese="Passwords do not match."/>
+	<Txt id="1004" english="Username has been existed." chinese="Username has been existed." japanese="Username has been existed."/>
+	<Txt id="1005" english="Please enter your email address." chinese="Please enter your email address." japanese="Please enter your email address."/>
+	<Txt id="1006" english="To protect your account,&#x000A;please input password at least 6 characters." chinese="To protect your account,&#x000A;please input password at least 6 characters." japanese="To protect your account,&#x000A;please input password at least 6 characters."/>
+	<Txt id="1007" english="Do you want to transfer your previous &#x000A;game data to your new account?" chinese="Do you want to transfer your previous game data to your new account?" japanese="Do you want to transfer your previous game data to your new account?"/>
+	<Txt id="1008" english="Are you sure to quit? &#x000A;(Cost will not be refunded after quitting)" chinese="Are you sure to quit? &#x000A;(Cost will not be refunded after quitting)" japanese="Are you sure to quit? &#x000A;(Cost will not be refunded after quitting)"/>
+	<Txt id="1009" english="empty password!" chinese="empty password!" japanese="empty password!"/>
+	<Txt id="1010" english="Your account is not existed &#x000A;or wrong password,please try again!" chinese="您的帐号不存在或者密码输入有误，请查证后再次尝试登录！" japanese="Your account is existed or wrong password,please try again!"/>
+	<Txt id="1011" english="Your account is unavaild,please contact service center!" chinese="您的帐号暂时处于冻结状态，请联系客户服务中心了解详细情况！" japanese="Your account is unavaild,please contact service center!"/>
+	<Txt id="1012" english="System paused!" chinese="系统暂停" japanese="System paused!"/>
+	<Txt id="1013" english="Your IP is  prohibited,please contact service center!" chinese="抱歉地通知您，系统禁止了您所在的 IP 地址的登录功能，请联系客户服务中心了解详细情况！" japanese="Your IP is  prohibited,please contact service center!"/>
+	<Txt id="1014" english="Your login function is prohibited,please contact service center!" chinese="抱歉地通知您，系统禁止了您的机器的登录功能，请联系客户服务中心了解详细情况！" japanese="Your login function is prohibited,please contact service center!"/>
+	<Txt id="1015" english="Game dll is not existed!" chinese="系统游戏动态库不存在！" japanese="Game dll is not existed!"/>
+	<Txt id="1016" english="Register paused!" chinese="注册暂停" japanese="Register paused!"/>
+	<Txt id="1017" english="Login paused!" chinese="登录暂停" japanese="Login paused!"/>
+	<Txt id="1018" english="Your account contains unvalid character,please try again!" chinese="抱歉地通知您，您所输入的登录账号名含有限制字符串，请更换账号名后再次申请账号！" japanese="Your account contains unvalid character,please try again!"/>
+	<Txt id="1019" english="Your nickname contains unvalid character,please try again!" chinese="抱歉地通知您，您所输入的游戏昵称名含有限制字符串，请更换昵称名后再次申请帐号！" japanese="Your nickname contains unvalid character,please try again!"/>
+	<Txt id="1020" english="Your IP register function is  prohibited,please contact service center!" chinese="抱歉地通知您，系统禁止了您所在的 IP 地址的注册功能，请联系客户服务中心了解详细情况！" japanese="Your register function is  prohibited,please contact service center!"/>
+	<Txt id="1021" english="Your register machine function is  prohibited,&#x000A;please contact service center!" chinese="抱歉地通知您，系统禁止了您的机器的注册功能，请联系客户服务中心了解详细情况！" japanese="Your register function is  prohibited,please contact service center!"/>
+	<Txt id="1022" english="This account has already been taken." chinese="此帐号已被注册，请换另一帐号尝试再次注册！" japanese="Your account has existed,please try another again!"/>
+	<Txt id="1023" english="Your nickname has existed,please try another again!" chinese="此昵称已被注册，请换另一昵称尝试再次注册！" japanese="Your nickname has existed,please try another again!"/>
+	<Txt id="1024" english="Register account failed,please try again!" chinese="由于意外的原因，帐号注册失败，请尝试再次注册！" japanese="Register account failed,please try again!"/>
+	<Txt id="1025" english="Guest user is not existed, you would not update!" chinese="此机器的Guest用户不存在，无法完成升级！" japanese="Guest user is not existed, you would not update!"/>
+	<Txt id="1026" english="Your game coins is exception, please contact service center!" chinese="抱歉地通知你，您的游戏币数据出现了异常情况，请联系客户服务中心了解详细情况！" japanese="Your game coins is exception, please contact service center!"/>
+	<Txt id="1027" english="You can't play game in same &#x000A;room at the same time!" chinese="您正在游戏房间中，不能同时在进入此游戏房间！" japanese="You can't play game in same room at the same time!"/>
+	<Txt id="1028" english="Your game coins is locked,please contact service center!" chinese="抱歉地通知你，游戏币锁定操作失败，请联系客户服务中心了解详细情况！" japanese="Your game coins is locked,please contact service center!"/>
+	<Txt id="1029" english="Login failed, please try again!" chinese="登录游戏失败" japanese="Login failed, please try again!"/>
+	<Txt id="1030" english="Register account failed,please try again!" chinese="注册用户失败" japanese="Register account failed,please try again!"/>
+	<Txt id="1031" english="Update guest failed!" chinese="升级guest失败" japanese="Update guest failed!"/>
+	<Txt id="1032" english="Server list is empty!" chinese="服务器列表为空!" japanese="Server list is empty!"/>
+	<Txt id="1033" english="Game servers are full now, please try later!" chinese="没有房间可以进入!" japanese="Game servers are full now, please try later!"/>
+	<Txt id="1034" english="Sorry,you had disconnect with game server,&#x000A;please try later!" chinese="您已经同游戏服务器断开连接!" japanese="Sorry,you had disconnect with game server,please try later!"/>
+	<Txt id="1035" english="Sorry,you enter room failed,&#x000A;please try later!" chinese="登录游戏服务器失败！" japanese="Sorry,you enter room failed,please try later!"/>
+	<Txt id="1036" english="Your password contains &#x000A;unvalid character,please try again!" chinese="密码包含限制字符" japanese="Your password contains unvalid character,please try again!"/>
+	<Txt id="1037" english="Bstar is not enough ,please buy more!" chinese="Bingo币不足，请购买！" japanese="Bstar is not enough ,please buy more!"/>
+	<Txt id="1038" english="Username is invalid.&#x000A;please input correct email address." chinese="Username is invalid.&#x000A;please input correct email address." japanese="Username is invalid.&#x000A;please input correct email address."/>
+	<Txt id="1039" english="Are you really want to quit game?" chinese="您是否要退出游戏？" japanese="Are you really want to quit game?"/>
+	<Txt id="1040" english="input you name" chinese="input you name" japanese="input you name"/>
+	<Txt id="1041" english="input password" chinese="input password" japanese="input password"/>
+	<Txt id="1042" english="input repassword" chinese="input repassword" japanese="input repassword"/>
+	<Txt id="1043" english="Guest" chinese="游客" japanese="Guest"/>
+	<Txt id="1044" english="length of text you input more than 100!" chinese="您输入的字符长度超过100个字符！" japanese="length of text you input more than 100!"/>
+	<Txt id="1045" english="modify nickname failed!" chinese="修改昵称失败！" japanese="modify nickname failed!"/>
+	<Txt id="1046" english="Disconnect with server,please login again!" chinese="同服务器断开连接，请重新登录！" japanese="Disconnect with server,please login again!"/>
+	<Txt id="1047" english="Original password is wrong!" chinese="原始密码不正确！" japanese="Original password is wrong!"/>
+	<Txt id="1048" english="Purchase Failed!" chinese="购买失败！" japanese="Purchase Failed!"/>
+	<Txt id="1049" english="Modify success!" chinese="修改昵称成功！" japanese="modify nickname success!"/>
+	<Txt id="1050" english="Modify  success!" chinese="修改密码成功！" japanese="modify password success!"/>
+	<Txt id="1051" english="Modify failed!" chinese="修改密码失败！" japanese="modify password failed!"/>
+	<Txt id="1052" english="select card failed!" chinese="选卡失败！" japanese="select card failed!"/>
+	<Txt id="1053" english="Round has begun,please wait..." chinese="游戏已经开始，请等下一局..." japanese="Round has begun,please wait..."/>
+	<Txt id="1054" english="Wait to begin...(at least two players)" chinese="等游戏开始...(至少两个玩家)" japanese="Wait to begin...(at least two players)"/>
+	<Txt id="1055" english="The version of BingoStar you're using&#x000A;is no longer supported.&#x000A;Please update your version." chinese="当前版本太低，请立即更新!" japanese="The version of BingoStar you're using&#x000A;is no longer supported.&#x000A;Please update your version."/>
+	<Txt id="1056" english="Bingo Left" chinese="Bingo Left" japanese="Bingo Left"/>
+	<Txt id="1057" english="Your power coin is not enough!" chinese="Your power coin is not enough!" japanese="Your power coin is not enough!"/>
+</Lanuage>

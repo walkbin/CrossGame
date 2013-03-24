@@ -50,7 +50,7 @@ namespace walkbin
 
         do 
         {
-            doc = FileHelper::openXml("internalString.xml");
+            doc = FileHelper::openXml("internalstr.xml");
             CC_BREAK_IF(!doc);
             curNode = xmlDocGetRootElement(doc); //确定文档根元素
             CC_BREAK_IF(!curNode);
@@ -84,8 +84,7 @@ namespace walkbin
             ret = true;
         } while (0);
 
-        if(doc)
-            xmlFreeDoc(doc);
+        FileHelper::closeXml(doc);
         return ret;
     }
 

@@ -77,7 +77,7 @@
       <DisableSpecificWarnings>4267;4251;4244;4100;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;libcocos2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;libcocos2d.lib;libExtensions.lib;libCocosDenshion.lib;libxml2.lib;libiconv.lib;libjpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(OutDir);$(ProjectDir)..\..\..\thirdparty\cocos2dx\$(Configuration).win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -85,7 +85,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)..\..\..\thirdparty\cocos2dx\$(Configuration).win32\*.dll" "$(ProjectDir)$(Configuration).win32\"</Command>
+      <Command>copy "$(ProjectDir)..\..\..\thirdparty\cocos2dx\$(Configuration).win32\*.dll" "$(ProjectDir)$(Configuration).win32\"
+xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,12 +125,12 @@
     <ClCompile Include="..\Classes\base\LabelBMFontLoader.cpp" />
     <ClCompile Include="..\Classes\base\LabelTTFLoader.cpp" />
     <ClCompile Include="..\Classes\base\LangMgr.cpp" />
-    <ClCompile Include="..\Classes\base\Layer.cpp" />
+    <ClCompile Include="..\Classes\base\BaseLayer.cpp" />
     <ClCompile Include="..\Classes\base\NodeLoaderLibrary.cpp" />
+    <ClCompile Include="..\Classes\controller\UIMgr.cpp" />
     <ClCompile Include="..\Classes\frame\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\model\Ground.cpp" />
-    <ClCompile Include="..\Classes\model\Hole.cpp" />
-    <ClCompile Include="..\Classes\model\Rabbit.cpp" />
+    <ClCompile Include="..\Classes\model\MainLogic.cpp" />
     <ClCompile Include="..\Classes\view\StartScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -141,14 +142,14 @@
     <ClInclude Include="..\Classes\base\LabelBMFontLoader.h" />
     <ClInclude Include="..\Classes\base\LabelTTFLoader.h" />
     <ClInclude Include="..\Classes\base\LangMgr.h" />
-    <ClInclude Include="..\Classes\base\Layer.h" />
+    <ClInclude Include="..\Classes\base\BaseLayer.h" />
     <ClInclude Include="..\Classes\base\NodeLoaderLibrary.h" />
     <ClInclude Include="..\Classes\config\AppMacros.h" />
     <ClInclude Include="..\Classes\config\Global.h" />
+    <ClInclude Include="..\Classes\controller\UIMgr.h" />
     <ClInclude Include="..\Classes\frame\AppDelegate.h" />
     <ClInclude Include="..\Classes\model\Ground.h" />
-    <ClInclude Include="..\Classes\model\Hole.h" />
-    <ClInclude Include="..\Classes\model\Rabbit.h" />
+    <ClInclude Include="..\Classes\model\MainLogic.h" />
     <ClInclude Include="..\Classes\view\StartScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
