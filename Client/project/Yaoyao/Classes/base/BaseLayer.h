@@ -30,33 +30,34 @@
 #include "config/Global.h"
 #include <vector>
 
-namespace walkbin
+NS_WALKBIN_BEGIN
+
+struct BaseLayerInfo
 {
-    struct BaseLayerInfo
-    {
-        CCLayer* pLayer;
-        bool bIsBaseLayer;
-        BaseLayerInfo(CCLayer* pl,bool b){pLayer = pl;bIsBaseLayer = b;}
-    };
+    CCLayer* pLayer;
+    bool bIsBaseLayer;
+    BaseLayerInfo(CCLayer* pl,bool b){pLayer = pl;bIsBaseLayer = b;}
+};
 
-    class BaseLayer : public CCLayer
-        , public CCBSelectorResolver
-        , public CCBMemberVariableAssigner
-        , public cocos2d::extension::CCNodeLoaderListener
-    {
-    public:
-        BaseLayer();
-        virtual ~BaseLayer();
+class BaseLayer : public CCLayer
+    , public CCBSelectorResolver
+    , public CCBMemberVariableAssigner
+    , public cocos2d::extension::CCNodeLoaderListener
+{
+public:
+    BaseLayer();
+    virtual ~BaseLayer();
 
-        virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char * pSelectorName);
-        virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char * pSelectorName);
-        virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
-        virtual void onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader);
-        virtual void dealNotify(int notifyId,void* param);
-        virtual void setCouldTouch(bool flag);
-        void setCouldTouchWithArray(std::vector<BaseLayerInfo> vArray,bool flag);
+    virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char * pSelectorName);
+    virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char * pSelectorName);
+    virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
+    virtual void onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader);
+    virtual void dealNotify(int notifyId,void* param);
+    virtual void setCouldTouch(bool flag);
+    void setCouldTouchWithArray(std::vector<BaseLayerInfo> vArray,bool flag);
 
-    private:
-        std::vector<CCLayer*> m_vMenualBtns;
-    };
-}
+private:
+    std::vector<CCLayer*> m_vMenualBtns;
+};
+
+NS_WALKBIN_END

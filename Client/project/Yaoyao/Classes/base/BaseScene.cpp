@@ -27,45 +27,29 @@
 *********************************************************************/
 #include "BaseScene.h"
 
-USING_NS_CC;
+NS_WALKBIN_BEGIN
 
-namespace walkbin
+BaseScene::BaseScene()
 {
-    BaseScene *BaseScene::create()
-    {
-        BaseScene *pRet = new BaseScene();
-        if (pRet && pRet->init())
-        {
-            pRet->autorelease();
-            return pRet;
-        }
-        else
-        {
-            CC_SAFE_RELEASE(pRet);
-            return NULL;
-        }
-    }
 
-    BaseScene::BaseScene()
-    {
-
-    }
-
-    BaseScene::~BaseScene()
-    {
-    }
-
-    bool BaseScene::init()
-    {
-        if(!CCScene::init())
-            return false;
-
-        this->scheduleUpdate();
-        return true;
-    }
-
-    void BaseScene::update(float dt)
-    {
-        CCScene::update(dt);
-    }
 }
+
+BaseScene::~BaseScene()
+{
+}
+
+bool BaseScene::init()
+{
+    if(!CCScene::init())
+        return false;
+
+    this->scheduleUpdate();
+    return true;
+}
+
+void BaseScene::update(float dt)
+{
+    CCScene::update(dt);
+}
+
+NS_WALKBIN_END

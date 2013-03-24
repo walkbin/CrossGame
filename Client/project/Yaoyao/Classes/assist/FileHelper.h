@@ -31,12 +31,13 @@
 #include "config/Global.h"
 #include <libxml/parser.h>
 
-namespace walkbin
+NS_WALKBIN_BEGIN
+
+class FileHelper
 {
-    class FileHelper
-    {
-    public:
-        static xmlDocPtr openXml(const char* filename);
-        static bool closeXml(xmlDocPtr pDoc);
-    };
-}
+public:
+    static xmlDocPtr openXml(const char* filename);
+    static bool closeXml(xmlDocPtr pDoc);
+};
+
+NS_WALKBIN_END

@@ -1,20 +1,26 @@
 #include "AppDelegate.h"
-
 #include <vector>
 #include <string>
 
-#include "view/StartScene.h"
 #include "config/AppMacros.h"
+#include "controller/UIMgr.h"
 
 USING_NS_CC;
 using namespace std;
+using namespace walkbin;
 
-AppDelegate::AppDelegate() {
-
+AppDelegate::AppDelegate()
+    :m_pUIMgr(new UIMgr)
+    ,m_pLangMgr(LangMgr::instance())
+    ,m_pLogic(new MainLogic)
+{
 }
 
 AppDelegate::~AppDelegate() 
 {
+    CC_SAFE_DELETE(m_pUIMgr);
+    CC_SAFE_DELETE(m_pLangMgr);
+    CC_SAFE_DELETE(m_pLogic);
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
@@ -59,8 +65,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
+    if(!m_pUIMgr->init())
+        return false;
+    CCScene *pScene = m_pUIMgr->getScene();
     // run
+    m_pUIMgr->bindLogic(m_pLogic);
     pDirector->runWithScene(pScene);
     return true;
 }

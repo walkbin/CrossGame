@@ -38,9 +38,6 @@
     <ClCompile Include="..\Classes\frame\AppDelegate.cpp">
       <Filter>Classes\frame</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\view\StartScene.cpp">
-      <Filter>Classes\view</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\model\Ground.cpp">
       <Filter>Classes\model</Filter>
     </ClCompile>
@@ -77,6 +74,12 @@
     <ClCompile Include="..\Classes\model\MainLogic.cpp">
       <Filter>Classes\model</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\view\LayerLoading.cpp">
+      <Filter>Classes\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\view\LayerLogo.cpp">
+      <Filter>Classes\view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -87,9 +90,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\frame\AppDelegate.h">
       <Filter>Classes\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\view\StartScene.h">
-      <Filter>Classes\view</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\model\Ground.h">
       <Filter>Classes\model</Filter>
@@ -129,6 +129,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\model\MainLogic.h">
       <Filter>Classes\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\view\LayerLogo.h">
+      <Filter>Classes\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\view\LayerLoading.h">
+      <Filter>Classes\view</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

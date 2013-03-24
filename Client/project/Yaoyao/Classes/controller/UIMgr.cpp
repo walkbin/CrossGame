@@ -30,272 +30,236 @@
 #include "base/BaseScene.h"
 #include "base/BaseLayer.h"
 
-namespace walkbin
+#include "model/MainLogic.h"
+
+#include "view/LayerLogo.h"
+#include "view/LayerLoading.h"
+
+NS_WALKBIN_BEGIN
+
+UIMgr::UIMgr()
+    :m_pScheduler(CCDirector::sharedDirector()->getScheduler())
+    ,m_pScene(NULL)
+    ,m_nCurFullScrLayer(UI_NONE)
+    ,m_pLogic(NULL)
 {
-    UIManager* UIManager::s_ui_mgr = NULL;
+}
 
-    UIManager* UIManager::instance()
+UIMgr::~UIMgr()
+{
+}
+
+bool UIMgr::init()
+{
+    bool ret = false;
+
+    m_pScheduler->scheduleSelector(schedule_selector(UIMgr::update),this,0.05f,false);
+    if(!m_pScene)
     {
-        if(!s_ui_mgr)
-        {
-            s_ui_mgr = new UIManager();
-            if(!s_ui_mgr->init())
-            {
-                CC_SAFE_DELETE(s_ui_mgr);
-            }
-        }
+        m_pScene = BaseScene::create();
+        if(m_pScene)
+            ret = true;
+    }
+    return ret;
+}
 
-        return s_ui_mgr;
+bool UIMgr::addUI(UIMsg msg)
+{
+    if(!m_vLayers.empty() && msg.view == m_vLayers.back())
+        return false;
+
+    if(msg.view < UI_FULL_SCR_LAYER_MAX)
+    {
+        m_pScene->removeAllChildrenWithCleanup(true);
+        m_vLayers.clear();
+        m_vMsg.clear();
+        m_nCurFullScrLayer = msg.view;
+    }
+    else
+    {
+        //BaseLayer
+        CCNode* pNode = (CCNode*)m_pScene->getChildren()->lastObject();
+        ((BaseLayer*)pNode)->setCouldTouch(false);
     }
 
-    void UIManager::killInstance()
+    //add ccbi layer
+    CCNode* pNode = parseCCBI(msg.view);
+    m_pScene->addChild(pNode,m_pScene->getChildrenCount());
+    m_vLayers.push_back(msg.view);
+    return true;
+}
+
+bool UIMgr::deleteUI(UIMsg msg)
+{
+    std::vector<UIView>::iterator it = std::find(m_vLayers.begin(), m_vLayers.end(), msg.view);
+    if (it == m_vLayers.end())
+        return false;
+
+    if(*it == m_vLayers.back())
     {
-        CC_SAFE_DELETE(s_ui_mgr);
-    }
-
-    UIManager::~UIManager()
-    {
-        m_pScheduler->unscheduleSelector(schedule_selector(UIManager::update),this);
-    }
-
-    UIManager::UIManager()
-        :m_pScheduler(CCDirector::sharedDirector()->getScheduler())
-        ,m_pScene(NULL)
-        //,m_nGameState(GAME_STATE_NONE)
-        ,m_nCurFullScrLayer(UI_NONE)
-    {
-
-    }
-
-    bool UIManager::init()
-    {
-        bool ret = false;
-
-        m_pScheduler->scheduleSelector(schedule_selector(UIManager::update),this,0.05f,false);
-        if(!m_pScene)
-        {
-            m_pScene = BaseScene::create();
-            if(m_pScene)
-                ret = true;
-        }
-        return ret;
-    }
-
-    bool UIManager::addUI(UIMsg msg)
-    {
-        if(!m_vLayers.empty() && msg.layer == m_vLayers.back())
-            return false;
-
-        if(msg.layer < UI_FULL_SCR_LAYER_MAX)
-        {
-            m_pScene->removeAllChildrenWithCleanup(true);
-            m_vLayers.clear();
-            m_vMsg.clear();
-            m_nCurFullScrLayer = msg.layer;
-        }
-        else
-        {
-            //BaseLayer
-            CCNode* pNode = (CCNode*)m_pScene->getChildren()->lastObject();
-            ((BaseLayer*)pNode)->setCouldTouch(false);
-        }
-
-        //add ccbi layer
-        CCNode* pNode = parseCCBI(msg.layer);
-        m_pScene->addChild(pNode,m_pScene->getChildrenCount());
-        m_vLayers.push_back(msg.layer);
+        m_vLayers.pop_back();
+        m_pScene->removeChild((CCNode*)(m_pScene->getChildren()->lastObject()));
+        CCNode* pNode = (CCNode*)m_pScene->getChildren()->lastObject();
+        ((BaseLayer*)pNode)->setCouldTouch(true);
         return true;
     }
-
-    bool UIManager::deleteUI(UIMsg msg)
+    else
     {
-        std::vector<UILayer>::iterator it = std::find(m_vLayers.begin(), m_vLayers.end(), msg.layer);
-        if (it == m_vLayers.end())
-            return false;
+        //获得idx
+        std::vector<UIView>::iterator it2;
+        int idx = 0;
 
-        if(*it == m_vLayers.back())
+        for (it2 = m_vLayers.begin(); it2 != m_vLayers.end(); it2++,idx++)
         {
-            m_vLayers.pop_back();
-            m_pScene->removeChild((CCNode*)(m_pScene->getChildren()->lastObject()));
-            CCNode* pNode = (CCNode*)m_pScene->getChildren()->lastObject();
-            ((BaseLayer*)pNode)->setCouldTouch(true);
-            return true;
+            if(it2 == it)
+                break;
         }
-        else
-        {
-            //获得idx
-            std::vector<UILayer>::iterator it2;
-            int idx = 0;
 
-            for (it2 = m_vLayers.begin(); it2 != m_vLayers.end(); it2++,idx++)
-            {
-                if(it2 == it)
-                    break;
-            }
-
-            m_vLayers.erase(it);
-            m_pScene->removeChild((CCNode*)(m_pScene->getChildren()->objectAtIndex(idx)));
-            return true;
-        }
-    }
-
-    bool UIManager::updateUI( UIMsg msg )
-    {
-        CCArray* pa = m_pScene->getChildren();
-        size_t cnts = pa->count();
-        BaseLayer* pLayer = NULL;
-        for (size_t i = 0; i < cnts; i++)
-        {
-            pLayer = dynamic_cast<BaseLayer*>(pa->objectAtIndex(i));
-            if(pLayer)
-            {
-                pLayer->dealNotify(msg.exParam,msg.pSender);
-            }
-        }
+        m_vLayers.erase(it);
+        m_pScene->removeChild((CCNode*)(m_pScene->getChildren()->objectAtIndex(idx)));
         return true;
-    }
-
-    UILayer UIManager::getCurUI()
-    {
-        if(m_vLayers.empty())
-            return UI_NONE;
-        else
-            return m_vLayers.back();
-    }
-
-    void UIManager::update( float dt )
-    {
-        CC_UNUSED_PARAM(dt);
-        syncUI();
-        tryDealMsg();
-    }
-
-    CCNode* UIManager::parseCCBI( const char* fileName )
-    {
-        if(!fileName)
-            return NULL;
-
-        NodeLoaderLibrary * ccNodeLoaderLibrary = NodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();
-        if(!ccNodeLoaderLibrary)
-            return NULL;
-
-        cocos2d::extension::CCBReader * ccbReader = new cocos2d::extension::CCBReader(ccNodeLoaderLibrary);
-        CCNode * node = ccbReader->readNodeGraphFromFile(fileName, this);
-        ccbReader->release();
-        return node;
-    }
-
-    cocos2d::CCNode* UIManager::parseCCBI( UILayer id )
-    {
-        return parseCCBI(getFileNameById(id));
-    }
-
-    const char* UIManager::getFileNameById( UILayer layerId )
-    {
-        switch (layerId)
-        {
-        case UI_LOADING:
-            return "LoadingScene.ccbi";
-        default:
-            CCAssert(1,"UIManager::getFileNameById");
-            return NULL;
-        }
-    }
-
-    void UIManager::sendMsg( UIMsg msg )
-    {
-        dealMsg(msg);
-    }
-
-    void UIManager::postMsg( UIMsg msg )
-    {
-        m_vMsg.push_back(msg);
-    }
-
-    void UIManager::dealMsg( UIMsg msg )
-    {
-        switch (msg.action)
-        {
-        case UI_ADD:
-            addUI(msg);
-            break;
-        case UI_DELETE:
-            deleteUI(msg);
-            break;
-        case UI_UPDATE:
-            updateUI(msg);
-            break;
-        default:
-            CCAssert(0,"<><><>wrong ui message");
-            break;
-        }
-    }
-
-    void UIManager::tryDealMsg()
-    {
-        if(m_vMsg.empty())
-            return;
-
-        UIMsg msg = m_vMsg.front();
-        dealMsg(msg);
-        m_vMsg.erase(m_vMsg.begin());
-    }
-
-    void UIManager::syncUI()
-    {
-        //int gameState = TacGameLogic::getInstance()->getState();
-        //if(m_nGameState == gameState)
-        //    return;
-        ////这里要等待roomlayer的fadeout动画做完之后，才能切换界面
-        //if(m_nGameState == GAME_STATE_ROOM_SELECT && gameState == GAME_STATE_SELECT_CARD)
-        //{
-        //    RoomLayer* pLayer = dynamic_cast<RoomLayer*>(m_pScene->getChildren()->objectAtIndex(0));
-        //    if(pLayer && pLayer->ifInFadeOut())
-        //        return;
-        //}
-
-        //switch (gameState)
-        //{
-        //case GAME_STATE_LOADING:
-        //    addUI(UIMsg(UI_LOADING));
-        //    break;
-        //case GAME_STATE_LOADING_SUCCESS:
-        //    addUI(UIMsg(UI_LOGIN));
-        //    break;
-        //case GAME_STATE_ROOM_SELECT:
-        //    addUI(UIMsg(UI_ROOM));
-        //    break;
-        //case GAME_STATE_SELECT_CARD:
-        //    addUI(UIMsg(UI_SELECT_CARD));
-        //    break;
-        //case GAME_STATE_GAME_RUNNING:
-        //    if (TacGameLogic::getInstance()->getCardCount() == BINGO_GAME_1_CARD)
-        //        addUI(UIMsg(UI_1_CARD));
-        //    else
-        //        addUI(UIMsg(UI_2_CARDS));
-        //    break;
-        //case GAME_STATE_GAME_OVER:
-        //    addUI(UIMsg(UI_RESULT));
-        //    break;
-        //default:
-        //    break;
-        //}
-
-        //m_nGameState = gameState;
-    }
-
-    bool UIManager::isFullScrUINeedBg( UILayer layerId )
-    {
-        return (layerId >= UI_SELECT_CARD && layerId <= UI_RESULT) ? true : false;
-    }
-
-    CCTexture2D* UIManager::cacheImg( const char* path )
-    {
-        return CCTextureCache::sharedTextureCache()->addImage(path);
-    }
-
-    void UIManager::clearImgCache()
-    {
-        CCTextureCache::purgeSharedTextureCache();
     }
 }
+
+bool UIMgr::updateUI( UIMsg msg )
+{
+    CCArray* pa = m_pScene->getChildren();
+    size_t cnts = pa->count();
+    BaseLayer* pLayer = NULL;
+    for (size_t i = 0; i < cnts; i++)
+    {
+        pLayer = dynamic_cast<BaseLayer*>(pa->objectAtIndex(i));
+        if(pLayer)
+        {
+            pLayer->dealNotify(msg.exParam,msg.pSender);
+        }
+    }
+    return true;
+}
+
+UIView UIMgr::getCurUI()
+{
+    if(m_vLayers.empty())
+        return UI_NONE;
+    else
+        return m_vLayers.back();
+}
+
+void UIMgr::update( float dt )
+{
+    CC_UNUSED_PARAM(dt);
+    syncUI();
+    tryDealMsg();
+}
+
+CCNode* UIMgr::parseCCBI( const char* fileName )
+{
+    if(!fileName)
+        return NULL;
+
+    NodeLoaderLibrary * ccNodeLoaderLibrary = NodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();
+    if(!ccNodeLoaderLibrary)
+        return NULL;
+
+    cocos2d::extension::CCBReader * ccbReader = new cocos2d::extension::CCBReader(ccNodeLoaderLibrary);
+    CCNode * node = ccbReader->readNodeGraphFromFile(fileName, this);
+    ccbReader->release();
+    return node;
+}
+
+cocos2d::CCNode* UIMgr::parseCCBI( UIView id )
+{
+    return parseCCBI(getFileNameById(id));
+}
+
+const char* UIMgr::getFileNameById( UIView layerId )
+{
+    switch (layerId)
+    {
+    case UI_LOGO:
+        return "logolayer.ccbi";
+    case UI_LOADING:
+        return "LoadingScene.ccbi";
+    default:
+        CCAssert(1,"UIManager::getFileNameById");
+        return NULL;
+    }
+}
+
+void UIMgr::sendMsg( UIMsg msg )
+{
+    dealMsg(msg);
+}
+
+void UIMgr::postMsg( UIMsg msg )
+{
+    m_vMsg.push_back(msg);
+}
+
+void UIMgr::dealMsg( UIMsg msg )
+{
+    switch (msg.action)
+    {
+    case UI_ADD:
+        addUI(msg);
+        break;
+    case UI_DELETE:
+        deleteUI(msg);
+        break;
+    case UI_UPDATE:
+        updateUI(msg);
+        break;
+    default:
+        CCAssert(0,"<><><>wrong ui message");
+        break;
+    }
+}
+
+void UIMgr::tryDealMsg()
+{
+    if(m_vMsg.empty())
+        return;
+
+    UIMsg msg = m_vMsg.front();
+    dealMsg(msg);
+    m_vMsg.erase(m_vMsg.begin());
+}
+
+void UIMgr::syncUI()
+{
+    int gameState = (int)m_pLogic->getState();
+    if(m_nGameState == gameState)
+        return;
+
+    switch (gameState)
+    {
+    case STATE_LOGO:
+        addUI(UIMsg(UI_LOGO));
+        break;
+    case STATE_LOADING:
+        addUI(UIMsg(UI_LOADING));
+        break;
+    default:
+        break;
+    }
+
+    m_nGameState = gameState;
+}
+
+CCTexture2D* UIMgr::cacheImg( const char* path )
+{
+    return CCTextureCache::sharedTextureCache()->addImage(path);
+}
+
+void UIMgr::clearImgCache()
+{
+    CCTextureCache::purgeSharedTextureCache();
+}
+
+void UIMgr::bindLogic( MainLogic* pLogic )
+{
+    CCAssert(pLogic,"");
+    m_pLogic = pLogic;
+}
+
+NS_WALKBIN_END

@@ -19,28 +19,24 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	created:	2013/03/23
-	filename: 	NodeLoaderLibrary.h
+	created:	2013/03/24
+	filename: 	LayerLoading.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#pragma once
-
-#include "config/Global.h"
+#include "LayerLoading.h"
 
 NS_WALKBIN_BEGIN
 
-class NodeLoaderLibrary : public CCNodeLoaderLibrary
+LayerLoading::LayerLoading()
 {
-public:
-    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(NodeLoaderLibrary, library);
-    static NodeLoaderLibrary * newDefaultCCNodeLoaderLibrary();
 
-    NodeLoaderLibrary(void);
-    virtual ~NodeLoaderLibrary(void);
+}
 
-    void registerDefaultCCNodeLoaders();
-};
+LayerLoading::~LayerLoading()
+{
+
+}
 
 NS_WALKBIN_END

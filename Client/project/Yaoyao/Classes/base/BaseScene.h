@@ -27,19 +27,20 @@
 *********************************************************************/
 #pragma once
 
-#include "layers_scenes_transitions_nodes/CCScene.h"
+#include "config/Global.h"
 
-namespace walkbin
+NS_WALKBIN_BEGIN
+
+class BaseScene : public cocos2d::CCScene
 {
-    class BaseScene : public cocos2d::CCScene
-    {
-    public:
-        static BaseScene *create(void);
+public:
+    CREATE_FUNC(BaseScene);
 
-        BaseScene(void);
-        virtual ~BaseScene(void);
+    BaseScene(void);
+    virtual ~BaseScene(void);
 
-        virtual bool init();
-        virtual void update(float dt);
-    };
-}
+    virtual bool init();
+    virtual void update(float dt);
+};
+
+NS_WALKBIN_END

@@ -31,7 +31,7 @@ xmlDocPtr walkbin::FileHelper::openXml( const char* filename )
 {
     xmlDocPtr pDoc = NULL;
 
-    std::string str = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename("internalString.xml");
+    std::string str = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(filename);
     unsigned long size = 0;
     unsigned char* pBuffer = cocos2d::CCFileUtils::sharedFileUtils()->getFileData(str.c_str(),"rb",&size);
     if(!pBuffer)

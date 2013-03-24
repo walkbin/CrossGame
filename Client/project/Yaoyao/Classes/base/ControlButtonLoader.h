@@ -29,20 +29,21 @@
 
 #include "config/Global.h"
 
-namespace walkbin
+NS_WALKBIN_BEGIN
+
+class ControlButtonLoader : public cocos2d::extension::CCControlButtonLoader
 {
-    class ControlButtonLoader : public cocos2d::extension::CCControlButtonLoader
-    {
-    public:
-        CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(ControlButtonLoader, loader);
+public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(ControlButtonLoader, loader);
 
-        ControlButtonLoader(void);
-        virtual ~ControlButtonLoader(void);
+    ControlButtonLoader(void);
+    virtual ~ControlButtonLoader(void);
 
-        virtual void onHandlePropTypeString(cocos2d::CCNode * pNode, 
-                                                                cocos2d::CCNode * pParent, 
-                                                                const char * pPropertyName, 
-                                                                const char * pString, 
-                                                                cocos2d::extension::CCBReader * pCCBReader);
-    };
-}
+    virtual void onHandlePropTypeString(cocos2d::CCNode * pNode, 
+        cocos2d::CCNode * pParent, 
+        const char * pPropertyName, 
+        const char * pString, 
+        cocos2d::extension::CCBReader * pCCBReader);
+};
+
+NS_WALKBIN_END

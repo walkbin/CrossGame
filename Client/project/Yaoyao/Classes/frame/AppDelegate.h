@@ -1,7 +1,12 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
-#include "cocos2d.h"
+#include "config/Global.h"
+#include "controller/UIMgr.h"
+#include "base/LangMgr.h"
+#include "model/MainLogic.h"
+
+using namespace walkbin;
 
 /**
 @brief    The cocos2d Application.
@@ -32,6 +37,11 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+
+private:
+    UIMgr* m_pUIMgr;
+    LangMgr* m_pLangMgr;
+    MainLogic* m_pLogic;
 };
 
 #endif // _APP_DELEGATE_H_

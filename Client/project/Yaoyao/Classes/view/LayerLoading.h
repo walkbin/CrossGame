@@ -19,28 +19,34 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	created:	2013/03/23
-	filename: 	NodeLoaderLibrary.h
+	created:	2013/03/24
+	filename: 	LayerLoading.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#pragma once
-
-#include "config/Global.h"
+#include "base/BaseLayer.h"
 
 NS_WALKBIN_BEGIN
 
-class NodeLoaderLibrary : public CCNodeLoaderLibrary
+class LayerLoading : public BaseLayer
 {
 public:
-    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(NodeLoaderLibrary, library);
-    static NodeLoaderLibrary * newDefaultCCNodeLoaderLibrary();
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(LayerLoading,create);
 
-    NodeLoaderLibrary(void);
-    virtual ~NodeLoaderLibrary(void);
+    LayerLoading();
+    virtual ~LayerLoading();
 
-    void registerDefaultCCNodeLoaders();
+private:
 };
+
+class LayerLoadingLoader : public cocos2d::extension::CCLayerLoader {
+public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(LayerLoadingLoader, loader);
+
+protected:
+    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(LayerLoading);
+};
+
 
 NS_WALKBIN_END

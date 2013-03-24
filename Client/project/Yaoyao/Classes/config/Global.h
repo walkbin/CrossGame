@@ -30,3 +30,6 @@
 
 USING_NS_CC;
 USING_NS_CC_EXT;
+
+#define NS_WALKBIN_BEGIN    namespace walkbin{
+#define NS_WALKBIN_END       }//namespace walkbin

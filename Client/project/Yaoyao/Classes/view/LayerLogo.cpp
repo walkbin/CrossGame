@@ -19,28 +19,24 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	created:	2013/03/23
-	filename: 	NodeLoaderLibrary.h
+	created:	2013/03/24
+	filename: 	LayerLogo.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#pragma once
-
-#include "config/Global.h"
+#include "LayerLogo.h"
 
 NS_WALKBIN_BEGIN
 
-class NodeLoaderLibrary : public CCNodeLoaderLibrary
+LayerLogo::LayerLogo()
 {
-public:
-    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(NodeLoaderLibrary, library);
-    static NodeLoaderLibrary * newDefaultCCNodeLoaderLibrary();
 
-    NodeLoaderLibrary(void);
-    virtual ~NodeLoaderLibrary(void);
+}
 
-    void registerDefaultCCNodeLoaders();
-};
+LayerLogo::~LayerLogo()
+{
+
+}
 
 NS_WALKBIN_END
