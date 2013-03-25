@@ -80,6 +80,12 @@
     <ClCompile Include="..\Classes\view\LayerLogo.cpp">
       <Filter>Classes\view</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\model\CubeData.cpp">
+      <Filter>Classes\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\view\RollPannel.cpp">
+      <Filter>Classes\view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -134,6 +140,12 @@
       <Filter>Classes\view</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\view\LayerLoading.h">
+      <Filter>Classes\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\model\CubeData.h">
+      <Filter>Classes\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\view\RollPannel.h">
       <Filter>Classes\view</Filter>
     </ClInclude>
   </ItemGroup>
