@@ -44,7 +44,11 @@ void LabelBMFontLoader::onHandlePropTypeText(CCNode * pNode, CCNode * pParent, c
 {
     if(strcmp(pPropertyName, PROPERTY_STRING) == 0) 
     {
-        ((CCLabelBMFont *)pNode)->setString(LangMgr::instance()->findTxt(pText).c_str());
+        std::string __txt = LangMgr::instance()->findTxt(pText);
+        if(__txt == "")
+            ((CCLabelBMFont *)pNode)->setString(pText);
+        else
+            ((CCLabelBMFont *)pNode)->setString(__txt.c_str());
     } 
     else 
     {

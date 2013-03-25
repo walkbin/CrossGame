@@ -42,10 +42,18 @@ LabelTTFLoader::~LabelTTFLoader(void)
 
 void LabelTTFLoader::onHandlePropTypeText(CCNode * pNode, CCNode * pParent, const char * pPropertyName, const char * pText, CCBReader * pCCBReader)
 {
-    if(strcmp(pPropertyName, PROPERTY_STRING) == 0) 
-        ((CCLabelTTF *)pNode)->setString(LangMgr::instance()->findTxt(pText).c_str());
+    if(strcmp(pPropertyName, PROPERTY_STRING) == 0)
+    {
+        std::string __txt = LangMgr::instance()->findTxt(pText);
+        if(__txt == "")
+            ((CCLabelTTF *)pNode)->setString(pText);
+        else
+            ((CCLabelTTF *)pNode)->setString(__txt.c_str());
+    }
     else 
+    {
         CCNodeLoader::onHandlePropTypeText(pNode, pParent, pPropertyName, pText, pCCBReader);
+    }
 }
 
 NS_WALKBIN_END

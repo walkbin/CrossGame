@@ -44,15 +44,21 @@ ControlButtonLoader::~ControlButtonLoader(void)
 
 void ControlButtonLoader::onHandlePropTypeString(CCNode * pNode, CCNode * pParent, const char * pPropertyName, const char * pString, CCBReader * pCCBReader)
 {
-    std::string strStr = LangMgr::instance()->findTxt(pString);
-    const char *convertedStr = strStr.c_str();
-    if(strcmp(pPropertyName, PROPERTY_TITLE_NORMAL) == 0) {
-        ((CCControlButton *)pNode)->setTitleForState(CCString::create(convertedStr), CCControlStateNormal);
-    } else if(strcmp(pPropertyName, PROPERTY_TITLE_HIGHLIGHTED) == 0) {
-        ((CCControlButton *)pNode)->setTitleForState(CCString::create(convertedStr), CCControlStateHighlighted);
-    } else if(strcmp(pPropertyName, PROPERTY_TITLE_DISABLED) == 0) {
-        ((CCControlButton *)pNode)->setTitleForState(CCString::create(convertedStr), CCControlStateDisabled);
-    } else {
+    std::string __txt = LangMgr::instance()->findTxt(pString);
+    if(strcmp(pPropertyName, PROPERTY_TITLE_NORMAL) == 0) 
+    {
+        ((CCControlButton *)pNode)->setTitleForState(CCString::create(__txt == "" ? std::string(pString) : __txt), CCControlStateNormal);
+    }
+    else if(strcmp(pPropertyName, PROPERTY_TITLE_HIGHLIGHTED) == 0)
+    {
+        ((CCControlButton *)pNode)->setTitleForState(CCString::create(__txt == "" ? std::string(pString) : __txt), CCControlStateHighlighted);
+    } 
+    else if(strcmp(pPropertyName, PROPERTY_TITLE_DISABLED) == 0) 
+    {
+        ((CCControlButton *)pNode)->setTitleForState(CCString::create(__txt == "" ? std::string(pString) : __txt), CCControlStateDisabled);
+    } 
+    else 
+    {
         CCControlLoader::onHandlePropTypeString(pNode, pParent, pPropertyName, pString, pCCBReader);
     }
 }
