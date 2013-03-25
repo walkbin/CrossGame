@@ -29,8 +29,10 @@
 
 NS_WALKBIN_BEGIN
 
+MainLogic* MainLogic::s_pLogic = NULL;
+
 MainLogic::MainLogic()
-:m_nState(STATE_LOGO)
+:m_nState(STATE_NONE)
 {
 
 }
@@ -38,6 +40,11 @@ MainLogic::MainLogic()
 MainLogic::~MainLogic()
 {
 
+}
+
+bool MainLogic::init()
+{
+    return true;
 }
 
 LogicState MainLogic::getState()
@@ -51,6 +58,40 @@ void MainLogic::setState(LogicState state)
         return;
 
     m_nState = state;
+
+    if(m_nState == STATE_LOGO)
+    {
+        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(MainLogic::changeToLoading),this,2.0f,0,0,false);
+    }
 }
+
+MainLogic* MainLogic::instance()
+{
+    if(!s_pLogic)
+    {
+        s_pLogic = new MainLogic;
+        if(s_pLogic && s_pLogic->init())
+        {
+            return s_pLogic;
+        }
+        else
+        {
+            CC_SAFE_DELETE(s_pLogic);
+            return NULL;
+        }
+    }
+}
+
+void MainLogic::killInstance()
+{
+    CC_SAFE_DELETE(s_pLogic);
+}
+
+void MainLogic::changeToLoading(float dt)
+{
+    setState(STATE_LOADING);
+}
+
+
 
 NS_WALKBIN_END

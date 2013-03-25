@@ -31,6 +31,7 @@ NS_WALKBIN_BEGIN
 
 enum LogicState
 {
+    STATE_NONE = -1,
     STATE_LOGO,
     STATE_LOADING,
 
@@ -38,17 +39,24 @@ enum LogicState
     STATE_MAX
 };
 
-class MainLogic
+class MainLogic : public CCObject
 {
 public:
+    static MainLogic* instance();
+    static void killInstance();
+
     MainLogic();
     virtual ~MainLogic();
 
+    virtual bool init();
+
     LogicState getState();
+    void setState(LogicState state);
+    
 
 protected:
-    void setState(LogicState state);
-
+    void changeToLoading(float dt);
+    
 private:
     static MainLogic* s_pLogic;
     LogicState m_nState;

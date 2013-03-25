@@ -37,9 +37,6 @@ public:
     LayerLogo();
     virtual ~LayerLogo();
     virtual bool init();
-
-protected:
-    void timercb(float dt);
 };
 
 class LayerLogoLoader : public cocos2d::extension::CCLayerLoader {

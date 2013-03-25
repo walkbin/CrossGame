@@ -21,6 +21,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     eglView->setFrameSize(600, 960);
     // The resolution of ipad3 is very large. In general, PC's resolution is smaller than it.
     // So we need to invoke 'setFrameZoomFactor'(only valid on desktop(win32, mac, linux)) to make the window smaller.
-    eglView->setFrameZoomFactor(0.8f);
+    eglView->setFrameZoomFactor(1.0f);
     return CCApplication::sharedApplication()->run();
 }

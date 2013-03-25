@@ -12,15 +12,15 @@ using namespace walkbin;
 AppDelegate::AppDelegate()
     :m_pUIMgr(UIMgr::instance())
     ,m_pLangMgr(LangMgr::instance())
-    ,m_pLogic(new MainLogic)
+    ,m_pLogic(MainLogic::instance())
 {
 }
 
 AppDelegate::~AppDelegate() 
 {
-    CC_SAFE_DELETE(m_pUIMgr);
-    CC_SAFE_DELETE(m_pLangMgr);
-    CC_SAFE_DELETE(m_pLogic);
+    UIMgr::killInstance();
+    LangMgr::killInstance();
+    MainLogic::killInstance();
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
@@ -68,6 +68,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCScene *pScene = m_pUIMgr->getScene();
     // run
     m_pUIMgr->bindLogic(m_pLogic);
+    m_pLogic->setState(STATE_LOGO);
     pDirector->runWithScene(pScene);
     return true;
 }
