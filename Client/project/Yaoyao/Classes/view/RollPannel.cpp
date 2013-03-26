@@ -50,4 +50,9 @@ int RollPannel::getCnt()
     return m_nCnts;
 }
 
+void RollPannel::draw()
+{
+
+}
+
 NS_WALKBIN_END

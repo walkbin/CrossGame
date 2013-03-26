@@ -36,6 +36,7 @@ public:
 
     LayerLoading();
     virtual ~LayerLoading();
+    virtual void onEnter();
 
 private:
 };

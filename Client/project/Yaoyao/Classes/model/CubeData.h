@@ -20,28 +20,26 @@
 	THE SOFTWARE.
 
 	created:	2013/03/25
-	filename: 	RollPannel.h
+	filename: 	CubeData.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#include "base/BaseLayer.h"
+#pragma once
+#include "config/Global.h"
 
 NS_WALKBIN_BEGIN
 
-class RollPannel : public BaseLayer
+class CubeData
 {
 public:
-    RollPannel();
-    virtual ~RollPannel();
-    void setCnt(int cnts);
-    int getCnt();
-    virtual void draw();
+    CubeData();
+    ~CubeData();
+
+
 
 private:
-    int m_nCnts;
-    float m_fOriAngle;
-    float m_fOriVelocity;
 };
+
 
 NS_WALKBIN_END

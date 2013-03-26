@@ -19,29 +19,27 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	created:	2013/03/25
-	filename: 	RollPannel.h
+	created:	2013/03/26
+	filename: 	Cube.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#include "base/BaseLayer.h"
+#include "config/Global.h"
 
 NS_WALKBIN_BEGIN
 
-class RollPannel : public BaseLayer
+class Cube : public CCNode
 {
 public:
-    RollPannel();
-    virtual ~RollPannel();
-    void setCnt(int cnts);
-    int getCnt();
+    CREATE_FUNC(Cube);
+    Cube();
+    ~Cube();
     virtual void draw();
-
+    virtual bool init();
 private:
-    int m_nCnts;
-    float m_fOriAngle;
-    float m_fOriVelocity;
+
+
 };
 
 NS_WALKBIN_END
