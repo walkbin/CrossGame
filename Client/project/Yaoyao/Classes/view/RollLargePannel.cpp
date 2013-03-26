@@ -20,34 +20,43 @@
 	THE SOFTWARE.
 
 	created:	2013/03/25
-	filename: 	RollPannel.cpp
+	filename: 	RollLargePannel.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#include "RollPannel.h"
+#include "RollLargePannel.h"
 
 NS_WALKBIN_BEGIN
 
-RollPannel::RollPannel()
-:m_nCnts(0)
+RollLargePannel::RollLargePannel()
 {
-
+    for (int i = 0; i< ITEMS_IN_LARGE_PANEL; i++)
+    {
+        m_pTxts[i] = NULL;
+    }
 }
 
-RollPannel::~RollPannel()
+RollLargePannel::~RollLargePannel()
 {
-
+    for (int i = 0; i< ITEMS_IN_LARGE_PANEL; i++)
+    {
+        CC_SAFE_RELEASE(m_pTxts[i]);
+    }
 }
 
-void RollPannel::setCnt( int cnts )
+bool RollLargePannel::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
 {
-    m_nCnts = cnts;
-}
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt1",CCLabelTTF*,m_pTxts[0]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt2",CCLabelTTF*,m_pTxts[1]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt3",CCLabelTTF*,m_pTxts[2]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt4",CCLabelTTF*,m_pTxts[3]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt5",CCLabelTTF*,m_pTxts[4]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt6",CCLabelTTF*,m_pTxts[5]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt7",CCLabelTTF*,m_pTxts[6]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt8",CCLabelTTF*,m_pTxts[7]);
 
-int RollPannel::getCnt()
-{
-    return m_nCnts;
+    return false;
 }
 
 NS_WALKBIN_END

@@ -52,7 +52,7 @@ typedef enum
     //full screen layers
     UI_LOGO,
     UI_LOADING,
-    UI_LOGIN,
+    UI_ROLLPANEL,
     //add new full screen layer here if you want
     UI_FULL_SCR_LAYER_MAX = 0xffff,
 

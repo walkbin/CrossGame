@@ -182,6 +182,8 @@ const char* UIMgr::getFileNameById( UIView layerId )
         return "logolayer.ccbi";
     case UI_LOADING:
         return "loadinglayer.ccbi";
+    case UI_ROLLPANEL:
+        return "rollpanellayer.ccbi";
     default:
         CCAssert(1,"UIManager::getFileNameById");
         return NULL;
@@ -240,6 +242,9 @@ void UIMgr::syncUI()
         break;
     case STATE_LOADING:
         addUI(UIMsg(UI_LOADING));
+        break;
+    case STATE_MAIN:
+        addUI(UIMsg(UI_ROLLPANEL));
         break;
     default:
         break;

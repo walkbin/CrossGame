@@ -134,7 +134,9 @@ xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</
     <ClCompile Include="..\Classes\view\Cube.cpp" />
     <ClCompile Include="..\Classes\view\LayerLoading.cpp" />
     <ClCompile Include="..\Classes\view\LayerLogo.cpp" />
+    <ClCompile Include="..\Classes\view\RollLargePannel.cpp" />
     <ClCompile Include="..\Classes\view\RollPannel.cpp" />
+    <ClCompile Include="..\Classes\view\RollSmallPannel.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +158,9 @@ xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</
     <ClInclude Include="..\Classes\view\Cube.h" />
     <ClInclude Include="..\Classes\view\LayerLoading.h" />
     <ClInclude Include="..\Classes\view\LayerLogo.h" />
+    <ClInclude Include="..\Classes\view\RollLargePannel.h" />
     <ClInclude Include="..\Classes\view\RollPannel.h" />
+    <ClInclude Include="..\Classes\view\RollSmallPannel.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

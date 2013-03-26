@@ -32,16 +32,25 @@ NS_WALKBIN_BEGIN
 class RollPannel : public BaseLayer
 {
 public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(RollPannel,create);
+
     RollPannel();
     virtual ~RollPannel();
     void setCnt(int cnts);
     int getCnt();
-    virtual void draw();
 
 private:
     int m_nCnts;
     float m_fOriAngle;
     float m_fOriVelocity;
+};
+
+class RollPannelLoader : public cocos2d::extension::CCLayerLoader {
+public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(RollPannelLoader, loader);
+
+protected:
+    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(RollPannel);
 };
 
 NS_WALKBIN_END

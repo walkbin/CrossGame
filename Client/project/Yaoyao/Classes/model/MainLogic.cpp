@@ -59,9 +59,20 @@ void MainLogic::setState(LogicState state)
 
     m_nState = state;
 
-    if(m_nState == STATE_LOGO)
+    switch (m_nState)
     {
+    case STATE_NONE:
+        break;
+    case STATE_LOGO:
         CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(MainLogic::changeToLoading),this,2.0f,0,0,false);
+        break;
+    case STATE_LOADING:
+        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(MainLogic::changeToMain),this,2.0f,0,0,false);
+        break;
+    case STATE_MAIN:
+        break;
+    default:
+        break;
     }
 }
 
@@ -80,6 +91,8 @@ MainLogic* MainLogic::instance()
             return NULL;
         }
     }
+
+    return s_pLogic;
 }
 
 void MainLogic::killInstance()
@@ -90,6 +103,11 @@ void MainLogic::killInstance()
 void MainLogic::changeToLoading(float dt)
 {
     setState(STATE_LOADING);
+}
+
+void MainLogic::changeToMain( float dt )
+{
+    setState(STATE_MAIN);
 }
 
 

@@ -20,34 +20,36 @@
 	THE SOFTWARE.
 
 	created:	2013/03/25
-	filename: 	RollPannel.cpp
+	filename: 	RollLargePannel.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#include "RollPannel.h"
+#include "base/BaseLayer.h"
 
 NS_WALKBIN_BEGIN
 
-RollPannel::RollPannel()
-:m_nCnts(0)
+class RollLargePannel : public BaseLayer
 {
+public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(RollLargePannel,create);
 
-}
+    RollLargePannel();
+    virtual ~RollLargePannel();
 
-RollPannel::~RollPannel()
-{
+    virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
 
-}
+private:
+    CCLabelTTF* m_pTxts[ITEMS_IN_LARGE_PANEL];
+};
 
-void RollPannel::setCnt( int cnts )
-{
-    m_nCnts = cnts;
-}
 
-int RollPannel::getCnt()
-{
-    return m_nCnts;
-}
+class RollLargePannelLoader : public cocos2d::extension::CCLayerLoader {
+public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(RollLargePannelLoader, loader);
+
+protected:
+    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(RollLargePannel);
+};
 
 NS_WALKBIN_END

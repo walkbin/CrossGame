@@ -20,34 +20,24 @@
 	THE SOFTWARE.
 
 	created:	2013/03/25
-	filename: 	RollPannel.cpp
+	filename: 	RollSmallPannel.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#include "RollPannel.h"
+#include "RollSmallPannel.h"
 
 NS_WALKBIN_BEGIN
 
-RollPannel::RollPannel()
-:m_nCnts(0)
+RollSmallPannel::RollSmallPannel()
 {
 
 }
 
-RollPannel::~RollPannel()
+RollSmallPannel::~RollSmallPannel()
 {
 
 }
 
-void RollPannel::setCnt( int cnts )
-{
-    m_nCnts = cnts;
-}
-
-int RollPannel::getCnt()
-{
-    return m_nCnts;
-}
 
 NS_WALKBIN_END

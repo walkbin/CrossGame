@@ -34,6 +34,7 @@ enum LogicState
     STATE_NONE = -1,
     STATE_LOGO,
     STATE_LOADING,
+    STATE_MAIN,
 
 
     STATE_MAX
@@ -56,6 +57,7 @@ public:
 
 protected:
     void changeToLoading(float dt);
+    void changeToMain(float dt);
     
 private:
     static MainLogic* s_pLogic;

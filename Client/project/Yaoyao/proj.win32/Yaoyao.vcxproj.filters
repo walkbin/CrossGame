@@ -86,6 +86,12 @@
     <ClCompile Include="..\Classes\view\Cube.cpp">
       <Filter>Classes\view</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\view\RollSmallPannel.cpp">
+      <Filter>Classes\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\view\RollLargePannel.cpp">
+      <Filter>Classes\view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -146,6 +152,12 @@
       <Filter>Classes\view</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\view\Cube.h">
+      <Filter>Classes\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\view\RollSmallPannel.h">
+      <Filter>Classes\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\view\RollLargePannel.h">
       <Filter>Classes\view</Filter>
     </ClInclude>
   </ItemGroup>

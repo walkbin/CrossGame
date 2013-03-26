@@ -13,6 +13,9 @@
 //project view
 #include "view/LayerLogo.h"
 #include "view/LayerLoading.h"
+#include "view/RollPannel.h"
+#include "view/RollSmallPannel.h"
+#include "view/RollLargePannel.h"
 
 NS_WALKBIN_BEGIN
 
@@ -34,7 +37,10 @@ void NodeLoaderLibrary::registerDefaultCCNodeLoaders()
     //project
     registerCCNodeLoader("logolayer",LayerLogoLoader::loader());
     registerCCNodeLoader("loadinglayer",LayerLoadingLoader::loader());
-    
+    registerCCNodeLoader("rollpanellayer",RollPannelLoader::loader());
+    registerCCNodeLoader("rollsmall",RollSmallPannelLoader::loader());
+    registerCCNodeLoader("rolllarge",RollLargePannelLoader::loader());
+
     CCNodeLoaderLibrary::registerDefaultCCNodeLoaders();
 }
 
