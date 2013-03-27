@@ -30,11 +30,15 @@
 NS_WALKBIN_BEGIN
 
 RollPannel::RollPannel()
-:m_nCnts(0)
+:m_pWorld(NULL)
 ,m_pSprite(NULL)
-,m_fAcceleration(0)
-,m_fCurAngle(0)
-,m_fCurVelocity(0)
+,m_fSpeed(0)
+,m_bClockwise(true)
+,m_fAccelerationUp(0)
+,m_fAccelerationDown(0)
+,m_fTopVelocity(0)
+,m_bStartRollUp(false)
+,m_bStartRollDown(false)
 {
 
 }
@@ -45,30 +49,28 @@ RollPannel::~RollPannel()
     CC_SAFE_DELETE(m_pWorld);
 }
 
-void RollPannel::setCnt( int cnts )
-{
-    m_nCnts = cnts;
-}
-
-int RollPannel::getCnt()
-{
-    return m_nCnts;
-}
-
 void RollPannel::startRoll()
 {
+    if(m_bStartRollUp || m_bStartRollDown)
+        return;
 
+    m_bStartRollUp = true;
+    m_bStartRollDown = false;
 }
 
 void RollPannel::stopRoll()
 {
-
+    m_bStartRollUp = false;
 }
 
 void RollPannel::onEnter()
 {
     BaseLayer::onEnter();
+    scheduleUpdate();
+}
 
+void RollPannel::setb2World()
+{
     m_pWorld = new b2World(b2Vec2(0.0f, -10.0f));  //创建b2世界
     m_pWorld->SetAllowSleeping(true);//设置可否睡眠
     m_pWorld->SetContinuousPhysics(true);//可持续物理效应
@@ -94,25 +96,75 @@ void RollPannel::onEnter()
     jd.localAnchorA.Set(this->getPositionX()/m_fRTMRatio, this->getPositionY()/m_fRTMRatio);
     jd.localAnchorB.Set(0.0f, 0.0f);
     jd.referenceAngle = 0.0f;
-    jd.motorSpeed = 0.05f * b2_pi;
+    jd.motorSpeed = m_fSpeed * b2_pi;
     jd.maxMotorTorque = 1e8f;
     jd.enableMotor = true;
-    /*m_joint = */(b2RevoluteJoint*)m_pWorld->CreateJoint(&jd);
-
-    scheduleUpdate();
+    m_pJoint = (b2RevoluteJoint*)m_pWorld->CreateJoint(&jd);
 }
 
 void RollPannel::update( float delta )
 {
+    if(!m_pWorld)
+        return;
+
     m_pWorld->Step(delta, 2, 2);  
-    for(b2Body *b = m_pWorld->GetBodyList(); b; b=b->GetNext()) {   
-        if (b->GetUserData() != NULL) {  
+    for(b2Body *b = m_pWorld->GetBodyList(); b; b=b->GetNext()) 
+    {   
+        if (b->GetUserData() != NULL)
+        {
             RollPannel *ballData = (RollPannel *)b->GetUserData();  
-            ballData->setPosition(ccp(b->GetPosition().x * m_fRTMRatio,  
-                b->GetPosition().y * m_fRTMRatio));  
-            ballData->setRotation( -1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));  
+            ballData->setPosition(ccp(b->GetPosition().x * m_fRTMRatio, b->GetPosition().y * m_fRTMRatio));  
+            ballData->setRotation( (m_bClockwise ? 1 : -1) * CC_RADIANS_TO_DEGREES(b->GetAngle()));
+
+            //改变速度
+            if(m_bStartRollUp && m_fSpeed < m_fTopVelocity)
+            {
+                m_fSpeed += m_fAccelerationUp*delta;
+                if(m_fSpeed > m_fTopVelocity)
+                {
+                    m_bStartRollUp = false;
+                    m_bStartRollDown = true;
+                }
+            }
+            else if(m_bStartRollDown && m_fSpeed > 0)
+            {
+                m_fSpeed -= m_fAccelerationDown*delta;
+                if(m_fSpeed < 0)
+                {
+                    m_fSpeed = 0;
+                    setSpeed(0);
+                    m_bStartRollDown = false;
+                }
+            }
+
+            if(m_bStartRollUp || m_bStartRollDown)
+                setSpeed(m_fSpeed);
         }   
     } 
 }
+
+void RollPannel::setSpeed( float speed )
+{
+    m_fSpeed = speed;
+    m_pJoint->SetMotorSpeed(m_fSpeed*b2_pi);
+}
+
+float RollPannel::getSpeed()
+{
+    return m_fSpeed;
+}
+
+void RollPannel::setIsClockwise( bool flag )
+{
+    m_bClockwise = flag;
+}
+
+void RollPannel::setMotionParam(float aUp,float aDown,float vTop)
+{
+    m_fAccelerationUp = aUp;
+    m_fAccelerationDown = aDown;
+    m_fTopVelocity = vTop;
+}
+
 
 NS_WALKBIN_END

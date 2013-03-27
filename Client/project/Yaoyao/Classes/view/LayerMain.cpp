@@ -35,6 +35,7 @@ NS_WALKBIN_BEGIN
 LayerMain::LayerMain()
 :m_pLargePanel(NULL)
 ,m_pSmallPanel(NULL)
+,m_pBtnStart(NULL)
 {
 
 }
@@ -43,6 +44,7 @@ LayerMain::~LayerMain()
 {
     CC_SAFE_RELEASE(m_pLargePanel);
     CC_SAFE_RELEASE(m_pSmallPanel);
+    CC_SAFE_RELEASE(m_pBtnStart);
 }
 
 void LayerMain::onEnter()
@@ -58,7 +60,20 @@ bool LayerMain::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMem
 {
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",RollLargePannel*,m_pLargePanel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mSmall",RollSmallPannel*,m_pSmallPanel);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mBtn",CCControlButton*,m_pBtnStart);
     return false;
+}
+
+cocos2d::extension::SEL_CCControlHandler LayerMain::onResolveCCBCCControlSelector( CCObject * pTarget, const char * pSelectorName )
+{
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this,"onStartClicked",LayerMain::onBtnStartClicked);
+    return NULL;
+}
+
+void LayerMain::onBtnStartClicked(CCObject* pSender, CCControlEvent event)
+{
+    m_pLargePanel->startRoll();
+    m_pSmallPanel->startRoll();
 }
 
 NS_WALKBIN_END

@@ -39,6 +39,7 @@ public:
 
     RollLargePannel();
     virtual ~RollLargePannel();
+    virtual void onEnter();
 
     virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
 

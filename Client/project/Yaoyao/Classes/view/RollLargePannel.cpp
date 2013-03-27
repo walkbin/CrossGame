@@ -45,6 +45,14 @@ RollLargePannel::~RollLargePannel()
     }
 }
 
+void RollLargePannel::onEnter()
+{
+    RollPannel::onEnter();
+    setb2World();
+    setIsClockwise(true);
+    setMotionParam(2.0f,1.0f,10.0f);
+}
+
 bool RollLargePannel::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
 {
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt1",CCLabelTTF*,m_aTxts[0]);
@@ -55,7 +63,7 @@ bool RollLargePannel::onAssignCCBMemberVariable( CCObject * pTarget, const char 
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt6",CCLabelTTF*,m_aTxts[5]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt7",CCLabelTTF*,m_aTxts[6]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt8",CCLabelTTF*,m_aTxts[7]);
-    //CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",CCSprite*,m_pSprite);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",CCSprite*,m_pSprite);
     return false;
 }
 

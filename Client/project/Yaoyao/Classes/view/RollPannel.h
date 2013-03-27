@@ -37,27 +37,31 @@ class RollPannel : public BaseLayer
 public:
     RollPannel();
     virtual ~RollPannel();
-    void setCnt(int cnts);
-    int getCnt();
     virtual void onEnter();
-
-    //开始滚动
+    void setb2World();
     void startRoll();
-    //停止滚动
     void stopRoll();
-
     virtual void update(float delta);
+    void setSpeed(float speed);
+    void setIsClockwise(bool flag);
+    void setMotionParam(float aUp,float aDown,float v_top);
+protected:
+    float getSpeed();
 
 public:
     CCSprite* m_pSprite;
 private:
-    int m_nCnts;
-    float m_fCurAngle;
-    float m_fCurVelocity;
-    float m_fAcceleration;
     b2World *m_pWorld;
     b2Body *m_pBody;
     float m_fRTMRatio; 
+    b2RevoluteJoint* m_pJoint;
+    float m_fSpeed;
+    bool m_bClockwise;
+    bool m_bStartRollUp;
+    bool m_bStartRollDown;
+    float m_fAccelerationUp;
+    float m_fAccelerationDown;
+    float m_fTopVelocity;
 };
 
 NS_WALKBIN_END

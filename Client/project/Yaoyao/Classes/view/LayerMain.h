@@ -44,10 +44,13 @@ public:
     virtual void onEnter();
 
     virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
+    virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char * pSelectorName);
 
+    void onBtnStartClicked(CCObject* pSender, CCControlEvent event);
 private:
     RollLargePannel* m_pLargePanel;
     RollSmallPannel* m_pSmallPanel;
+    CCControlButton* m_pBtnStart;
 };
 
 class LayerMainLoader : public cocos2d::extension::CCLayerLoader {

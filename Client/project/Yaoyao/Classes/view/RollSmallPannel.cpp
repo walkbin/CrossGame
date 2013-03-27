@@ -51,8 +51,16 @@ bool RollSmallPannel::onAssignCCBMemberVariable( CCObject * pTarget, const char 
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt2",CCLabelTTF*,m_aTxts[1]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt3",CCLabelTTF*,m_aTxts[2]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt4",CCLabelTTF*,m_aTxts[3]);
-    //CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mSmall",CCSprite*,m_pSprite);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mSmall",CCSprite*,m_pSprite);
     return false;
+}
+
+void RollSmallPannel::onEnter()
+{
+    RollPannel::onEnter();
+    setb2World();
+    setIsClockwise(false);
+    setMotionParam(1.5f,1.5f,10.0f);
 }
 
 NS_WALKBIN_END
