@@ -25,11 +25,14 @@
 	
 	purpose:	
 *********************************************************************/
-#include "base/BaseLayer.h"
+#pragma once
+
+#include "RollPannel.h"
+#include <array>
 
 NS_WALKBIN_BEGIN
 
-class RollSmallPannel : public BaseLayer
+class RollSmallPannel : public RollPannel
 {
 public:
     CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(RollSmallPannel,create);
@@ -37,6 +40,10 @@ public:
     RollSmallPannel();
     virtual ~RollSmallPannel();
 
+    virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
+
+private:
+    std::array<CCLabelTTF*,ITEMS_IN_SMALL_PANEL> m_aTxts;
 };
 
 class RollSmallPannelLoader : public cocos2d::extension::CCLayerLoader {

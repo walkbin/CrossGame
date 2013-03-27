@@ -92,6 +92,9 @@
     <ClCompile Include="..\Classes\view\RollLargePannel.cpp">
       <Filter>Classes\view</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\view\LayerMain.cpp">
+      <Filter>Classes\view</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -158,6 +161,9 @@
       <Filter>Classes\view</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\view\RollLargePannel.h">
+      <Filter>Classes\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\view\LayerMain.h">
       <Filter>Classes\view</Filter>
     </ClInclude>
   </ItemGroup>

@@ -25,32 +25,39 @@
 	
 	purpose:	
 *********************************************************************/
+#pragma once
+
 #include "base/BaseLayer.h"
+#include "Box2D/Box2D.h"
 
 NS_WALKBIN_BEGIN
 
 class RollPannel : public BaseLayer
 {
 public:
-    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(RollPannel,create);
-
     RollPannel();
     virtual ~RollPannel();
     void setCnt(int cnts);
     int getCnt();
+    virtual void onEnter();
 
+    //开始滚动
+    void startRoll();
+    //停止滚动
+    void stopRoll();
+
+    virtual void update(float delta);
+
+public:
+    CCSprite* m_pSprite;
 private:
     int m_nCnts;
-    float m_fOriAngle;
-    float m_fOriVelocity;
-};
-
-class RollPannelLoader : public cocos2d::extension::CCLayerLoader {
-public:
-    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(RollPannelLoader, loader);
-
-protected:
-    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(RollPannel);
+    float m_fCurAngle;
+    float m_fCurVelocity;
+    float m_fAcceleration;
+    b2World *m_pWorld;
+    b2Body *m_pBody;
+    float m_fRTMRatio; 
 };
 
 NS_WALKBIN_END

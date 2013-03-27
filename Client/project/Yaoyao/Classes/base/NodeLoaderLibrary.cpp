@@ -13,6 +13,7 @@
 //project view
 #include "view/LayerLogo.h"
 #include "view/LayerLoading.h"
+#include "view/LayerMain.h"
 #include "view/RollPannel.h"
 #include "view/RollSmallPannel.h"
 #include "view/RollLargePannel.h"
@@ -37,7 +38,7 @@ void NodeLoaderLibrary::registerDefaultCCNodeLoaders()
     //project
     registerCCNodeLoader("logolayer",LayerLogoLoader::loader());
     registerCCNodeLoader("loadinglayer",LayerLoadingLoader::loader());
-    registerCCNodeLoader("rollpanellayer",RollPannelLoader::loader());
+    registerCCNodeLoader("rollpanellayer",LayerMainLoader::loader());
     registerCCNodeLoader("rollsmall",RollSmallPannelLoader::loader());
     registerCCNodeLoader("rolllarge",RollLargePannelLoader::loader());
 

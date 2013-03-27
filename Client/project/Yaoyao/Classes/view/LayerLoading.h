@@ -25,6 +25,8 @@
 	
 	purpose:	
 *********************************************************************/
+#pragma once
+
 #include "base/BaseLayer.h"
 
 NS_WALKBIN_BEGIN

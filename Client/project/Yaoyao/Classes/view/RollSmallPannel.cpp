@@ -31,13 +31,28 @@ NS_WALKBIN_BEGIN
 
 RollSmallPannel::RollSmallPannel()
 {
-
+    for (size_t i = 0; i < m_aTxts.size(); i++)
+    {
+        m_aTxts[i] = NULL;
+    }
 }
 
 RollSmallPannel::~RollSmallPannel()
 {
-
+    for (size_t i = 0; i < m_aTxts.size(); i++)
+    {
+        CC_SAFE_RELEASE(m_aTxts[i]);
+    }
 }
 
+bool RollSmallPannel::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
+{
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt1",CCLabelTTF*,m_aTxts[0]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt2",CCLabelTTF*,m_aTxts[1]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt3",CCLabelTTF*,m_aTxts[2]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt4",CCLabelTTF*,m_aTxts[3]);
+    //CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mSmall",CCSprite*,m_pSprite);
+    return false;
+}
 
 NS_WALKBIN_END

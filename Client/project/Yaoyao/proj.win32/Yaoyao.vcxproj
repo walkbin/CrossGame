@@ -65,9 +65,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\third_party\win32\iconv;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\third_party\win32\libxml2;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx;$(ProjectDir)..\..\..\thirdparty\cocos2dx\extensions;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\include;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\win32;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\third_party\win32\OGLES;..\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\thirdparty\cocos2dx\external;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\third_party\win32\iconv;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\third_party\win32\libxml2;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx;$(ProjectDir)..\..\..\thirdparty\cocos2dx\extensions;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\include;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\kazmath\include;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\win32;$(ProjectDir)..\..\..\thirdparty\cocos2dx\cocos2dx\platform\third_party\win32\OGLES;..\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -75,9 +75,12 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4267;4251;4244;4100;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableParallelCodeGeneration>
+      </EnableParallelCodeGeneration>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;libcocos2d.lib;libExtensions.lib;libCocosDenshion.lib;libxml2.lib;libiconv.lib;libjpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;libcocos2d.lib;libExtensions.lib;libCocosDenshion.lib;libxml2.lib;libiconv.lib;libjpeg.lib;libBox2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(OutDir);$(ProjectDir)..\..\..\thirdparty\cocos2dx\$(Configuration).win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -85,7 +88,7 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)..\..\..\thirdparty\cocos2dx\$(Configuration).win32\*.dll" "$(ProjectDir)$(Configuration).win32\"
+      <Command>xcopy "$(ProjectDir)..\..\..\thirdparty\cocos2dx\$(Configuration).win32\*.dll" "$(ProjectDir)$(Configuration).win32\" /e/y
 xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -134,6 +137,7 @@ xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</
     <ClCompile Include="..\Classes\view\Cube.cpp" />
     <ClCompile Include="..\Classes\view\LayerLoading.cpp" />
     <ClCompile Include="..\Classes\view\LayerLogo.cpp" />
+    <ClCompile Include="..\Classes\view\LayerMain.cpp" />
     <ClCompile Include="..\Classes\view\RollLargePannel.cpp" />
     <ClCompile Include="..\Classes\view\RollPannel.cpp" />
     <ClCompile Include="..\Classes\view\RollSmallPannel.cpp" />
@@ -158,6 +162,7 @@ xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</
     <ClInclude Include="..\Classes\view\Cube.h" />
     <ClInclude Include="..\Classes\view\LayerLoading.h" />
     <ClInclude Include="..\Classes\view\LayerLogo.h" />
+    <ClInclude Include="..\Classes\view\LayerMain.h" />
     <ClInclude Include="..\Classes\view\RollLargePannel.h" />
     <ClInclude Include="..\Classes\view\RollPannel.h" />
     <ClInclude Include="..\Classes\view\RollSmallPannel.h" />

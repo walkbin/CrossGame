@@ -25,11 +25,14 @@
 	
 	purpose:	
 *********************************************************************/
-#include "base/BaseLayer.h"
+#pragma once
+
+#include "RollPannel.h"
+#include <array>
 
 NS_WALKBIN_BEGIN
 
-class RollLargePannel : public BaseLayer
+class RollLargePannel : public RollPannel
 {
 public:
     CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(RollLargePannel,create);
@@ -40,7 +43,7 @@ public:
     virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
 
 private:
-    CCLabelTTF* m_pTxts[ITEMS_IN_LARGE_PANEL];
+    std::array<CCLabelTTF*,ITEMS_IN_LARGE_PANEL> m_aTxts;
 };
 
 

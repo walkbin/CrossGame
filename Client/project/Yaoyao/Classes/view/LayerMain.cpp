@@ -19,43 +19,45 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	created:	2013/03/25
-	filename: 	RollLargePannel.cpp
+	created:	2013/03/24
+	filename: 	LayerMain.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
+#include "LayerMain.h"
+#include "Cube.h"
 #include "RollLargePannel.h"
+#include "RollSmallPannel.h"
 
 NS_WALKBIN_BEGIN
 
-RollLargePannel::RollLargePannel()
+LayerMain::LayerMain()
+:m_pLargePanel(NULL)
+,m_pSmallPanel(NULL)
 {
-    for (size_t i = 0; i < m_aTxts.size(); i++)
-    {
-        m_aTxts[i] = NULL;
-    }
+
 }
 
-RollLargePannel::~RollLargePannel()
+LayerMain::~LayerMain()
 {
-    for (size_t i = 0; i < m_aTxts.size(); i++)
-    {
-        CC_SAFE_RELEASE(m_aTxts[i]);
-    }
+    CC_SAFE_RELEASE(m_pLargePanel);
+    CC_SAFE_RELEASE(m_pSmallPanel);
 }
 
-bool RollLargePannel::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
+void LayerMain::onEnter()
 {
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt1",CCLabelTTF*,m_aTxts[0]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt2",CCLabelTTF*,m_aTxts[1]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt3",CCLabelTTF*,m_aTxts[2]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt4",CCLabelTTF*,m_aTxts[3]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt5",CCLabelTTF*,m_aTxts[4]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt6",CCLabelTTF*,m_aTxts[5]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt7",CCLabelTTF*,m_aTxts[6]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt8",CCLabelTTF*,m_aTxts[7]);
-    //CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",CCSprite*,m_pSprite);
+    BaseLayer::onEnter();
+
+    Cube* pCube = Cube::create();
+    if(pCube)
+        addChild(pCube);
+}
+
+bool LayerMain::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
+{
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",RollLargePannel*,m_pLargePanel);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mSmall",RollSmallPannel*,m_pSmallPanel);
     return false;
 }
 

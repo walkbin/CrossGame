@@ -25,6 +25,8 @@
 	
 	purpose:	
 *********************************************************************/
+#pragma once
+
 #include "config/Global.h"
 
 NS_WALKBIN_BEGIN
