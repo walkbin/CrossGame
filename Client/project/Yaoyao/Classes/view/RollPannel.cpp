@@ -116,6 +116,8 @@ void RollPannel::update( float delta )
             ballData->setPosition(ccp(b->GetPosition().x * m_fRTMRatio, b->GetPosition().y * m_fRTMRatio));  
             ballData->setRotation( (m_bClockwise ? 1 : -1) * CC_RADIANS_TO_DEGREES(b->GetAngle()));
 
+                ball->ApplyAngularImpulse(0.5f);
+
             //改变速度
             if(m_bStartRollUp && m_fSpeed < m_fTopVelocity)
             {
