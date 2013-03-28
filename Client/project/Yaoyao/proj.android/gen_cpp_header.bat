@@ -1,0 +1,1 @@
+javah -classpath bin/classes -bootclasspath D:\android\android-sdk\platforms\android-10\android.jar  -d jni com.walkbin.yaoyao.Yaoyao

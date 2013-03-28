@@ -26,7 +26,6 @@
 	purpose:	
 *********************************************************************/
 #include "LayerMain.h"
-#include "Cube.h"
 #include "RollLargePannel.h"
 #include "RollSmallPannel.h"
 
@@ -50,10 +49,6 @@ LayerMain::~LayerMain()
 void LayerMain::onEnter()
 {
     BaseLayer::onEnter();
-
-    Cube* pCube = Cube::create();
-    if(pCube)
-        addChild(pCube);
 }
 
 bool LayerMain::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )

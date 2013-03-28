@@ -26,7 +26,6 @@
 	purpose:	
 *********************************************************************/
 #include "LayerLoading.h"
-#include "Cube.h"
 
 NS_WALKBIN_BEGIN
 
@@ -43,10 +42,6 @@ LayerLoading::~LayerLoading()
 void LayerLoading::onEnter()
 {
     BaseLayer::onEnter();
-
-    Cube* pCube = Cube::create();
-    if(pCube)
-        addChild(pCube);
 }
 
 NS_WALKBIN_END

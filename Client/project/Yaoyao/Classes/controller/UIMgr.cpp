@@ -89,7 +89,14 @@ bool UIMgr::addUI(UIMsg msg)
 
 bool UIMgr::deleteUI(UIMsg msg)
 {
-    std::vector<UIView>::iterator it = std::find(m_vLayers.begin(), m_vLayers.end(), msg.view);
+    std::vector<UIView>::iterator it;
+
+    for (it = m_vLayers.begin(); it != m_vLayers.end(); it++)
+    {
+        if(*it == msg.view)
+            break;
+    }
+
     if (it == m_vLayers.end())
         return false;
 

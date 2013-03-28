@@ -33,7 +33,7 @@ purpose:
 
 NS_WALKBIN_BEGIN
 
- typedef enum LangType
+enum LangType
 {
     LANG_EN,
     LANG_ZH_S,
