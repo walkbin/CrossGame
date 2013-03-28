@@ -25,12 +25,38 @@ package com.walkbin.yaoyao;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
+
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class Yaoyao extends Cocos2dxActivity{
 
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		//友盟自更新
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
+		UmengUpdateAgent.update(this);
+		
+		UmengUpdateAgent.setUpdateAutoPopup(false); 
+		UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() { 
+			@Override 
+			public void onUpdateReturned(int updateStatus,UpdateResponse updateInfo) {
+/*				switch (updateStatus) { 
+				case 0: // has update 
+					UmengUpdateAgent.showUpdateDialog(mContext, updateInfo); break; 
+				case 1: // has no update 
+					Toast.makeText(mContext, "没有更新", Toast.LENGTH_SHORT) .show(); break; 
+				case 2: // none wifi 
+					Toast.makeText(mContext, "没有wifi连接， 只在wifi下更新", Toast.LENGTH_SHORT) .show(); break; 
+				case 3: // time out 
+					Toast.makeText(mContext, "超时", Toast.LENGTH_SHORT) .show(); break; 
+					}*/
+			}
+		}
+		
 	}
 	
     static {
