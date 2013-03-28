@@ -76,26 +76,19 @@ void MainLogic::setState(LogicState state)
     }
 }
 
-MainLogic* MainLogic::instance()
+MainLogic* MainLogic::getInstance()
 {
     if(!s_pLogic)
     {
         s_pLogic = new MainLogic;
-        if(s_pLogic && s_pLogic->init())
-        {
-            return s_pLogic;
-        }
-        else
-        {
+        if(!s_pLogic || !s_pLogic->init())
             CC_SAFE_DELETE(s_pLogic);
-            return NULL;
-        }
     }
 
     return s_pLogic;
 }
 
-void MainLogic::killInstance()
+void MainLogic::freeInstance()
 {
     CC_SAFE_DELETE(s_pLogic);
 }
@@ -108,6 +101,11 @@ void MainLogic::changeToLoading(float dt)
 void MainLogic::changeToMain( float dt )
 {
     setState(STATE_MAIN);
+}
+
+void MainLogic::startState()
+{
+    setState(STATE_LOGO);
 }
 
 

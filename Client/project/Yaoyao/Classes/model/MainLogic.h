@@ -25,6 +25,8 @@
 	
 	purpose:	
 *********************************************************************/
+#pragma once
+
 #include "config/Global.h"
 
 NS_WALKBIN_BEGIN
@@ -43,18 +45,15 @@ enum LogicState
 class MainLogic : public CCObject
 {
 public:
-    static MainLogic* instance();
-    static void killInstance();
+    static MainLogic* getInstance();
+    static void freeInstance();
 
     MainLogic();
     virtual ~MainLogic();
-
     virtual bool init();
-
     LogicState getState();
     void setState(LogicState state);
-    
-
+    void startState();
 protected:
     void changeToLoading(float dt);
     void changeToMain(float dt);

@@ -44,7 +44,7 @@ ControlButtonLoader::~ControlButtonLoader(void)
 
 void ControlButtonLoader::onHandlePropTypeString(CCNode * pNode, CCNode * pParent, const char * pPropertyName, const char * pString, CCBReader * pCCBReader)
 {
-    std::string __txt = LangMgr::instance()->findTxt(pString);
+    std::string __txt = LangMgr::getInstance()->findTxt(pString);
     if(strcmp(pPropertyName, PROPERTY_TITLE_NORMAL) == 0) 
     {
         ((CCControlButton *)pNode)->setTitleForState(CCString::create(__txt == "" ? std::string(pString) : __txt), CCControlStateNormal);

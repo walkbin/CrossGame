@@ -123,6 +123,8 @@ xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</
   <ItemGroup>
     <ClCompile Include="..\Classes\assist\DBHelper.cpp" />
     <ClCompile Include="..\Classes\assist\FileHelper.cpp" />
+    <ClCompile Include="..\Classes\assist\InstanceMgr.cpp" />
+    <ClCompile Include="..\Classes\assist\LoaderHelper.cpp" />
     <ClCompile Include="..\Classes\base\BaseScene.cpp" />
     <ClCompile Include="..\Classes\base\ControlButtonLoader.cpp" />
     <ClCompile Include="..\Classes\base\LabelBMFontLoader.cpp" />
@@ -146,6 +148,8 @@ xcopy "$(ProjectDir)..\Resources" ""$(ProjectDir)$(Configuration).win32"" /e/y</
   <ItemGroup>
     <ClInclude Include="..\Classes\assist\DBHelper.h" />
     <ClInclude Include="..\Classes\assist\FileHelper.h" />
+    <ClInclude Include="..\Classes\assist\InstanceMgr.h" />
+    <ClInclude Include="..\Classes\assist\LoaderHelper.h" />
     <ClInclude Include="..\Classes\base\BaseScene.h" />
     <ClInclude Include="..\Classes\base\ControlButtonLoader.h" />
     <ClInclude Include="..\Classes\base\LabelBMFontLoader.h" />

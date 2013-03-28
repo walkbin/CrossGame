@@ -48,8 +48,8 @@ typedef std::map<int, std::map<int, std::string> > LanMap;
 class LangMgr
 {
 public:
-    static LangMgr* instance();
-    static void killInstance();
+    static LangMgr* getInstance();
+    static void freeInstance();
     static void setLang(int langId);
 
     LangMgr(void);

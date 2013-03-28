@@ -20,7 +20,7 @@
 	THE SOFTWARE.
 
 	created:	2013/03/28
-	filename: 	DBHelper.h
+	filename: 	InstanceMgr.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
@@ -28,11 +28,25 @@
 #pragma once
 
 #include "config/Global.h"
+#include "LoaderHelper.h"
+#include "base/LangMgr.h"
+#include "controller/UIMgr.h"
+#include "model/MainLogic.h"
 
 NS_WALKBIN_BEGIN
 
+class InstanceMgr
+{
+public:
+    static void create();
+    static void destroy();
 
-
+public:
+    static LangMgr* langMgr;
+    static LoaderHelper* loaderHelper;
+    static UIMgr* uiMgr;
+    static MainLogic* mainLogic;
+};
 
 
 NS_WALKBIN_END

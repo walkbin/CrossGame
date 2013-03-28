@@ -20,19 +20,34 @@
 	THE SOFTWARE.
 
 	created:	2013/03/28
-	filename: 	DBHelper.h
+	filename: 	InstanceMgr.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#pragma once
-
-#include "config/Global.h"
+#include "InstanceMgr.h"
 
 NS_WALKBIN_BEGIN
 
+LangMgr* InstanceMgr::langMgr = NULL;
+LoaderHelper* InstanceMgr::loaderHelper = NULL;
+UIMgr* InstanceMgr::uiMgr = NULL;
+MainLogic* InstanceMgr::mainLogic = NULL;
 
+void InstanceMgr::create()
+{
+    langMgr =             LangMgr::getInstance();
+    loaderHelper =       LoaderHelper::getInstance();
+    uiMgr =                 UIMgr::getInstance();
+    mainLogic =          MainLogic::getInstance();
+}
 
-
+void InstanceMgr::destroy()
+{
+    LangMgr::freeInstance();
+    LoaderHelper::freeInstance();
+    UIMgr::freeInstance();
+    MainLogic::freeInstance();
+}
 
 NS_WALKBIN_END

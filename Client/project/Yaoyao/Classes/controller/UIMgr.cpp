@@ -26,12 +26,9 @@
 	purpose:	
 *********************************************************************/
 #include "UIMgr.h"
-#include "base/NodeLoaderLibrary.h"
 #include "base/BaseScene.h"
 #include "base/BaseLayer.h"
-
-#include "model/MainLogic.h"
-
+#include "assist/InstanceMgr.h"
 #include "view/LayerLogo.h"
 #include "view/LayerLoading.h"
 
@@ -43,7 +40,6 @@ UIMgr::UIMgr()
     :m_pScheduler(CCDirector::sharedDirector()->getScheduler())
     ,m_pScene(NULL)
     ,m_nCurFullScrLayer(UI_NONE)
-    ,m_pLogic(NULL)
 {
 }
 
@@ -159,13 +155,8 @@ CCNode* UIMgr::parseCCBI( const char* fileName )
     if(!fileName)
         return NULL;
 
-    NodeLoaderLibrary * ccNodeLoaderLibrary = NodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();
-    if(!ccNodeLoaderLibrary)
-        return NULL;
-
-    cocos2d::extension::CCBReader * ccbReader = new cocos2d::extension::CCBReader(ccNodeLoaderLibrary);
+    cocos2d::extension::CCBReader * ccbReader = new cocos2d::extension::CCBReader(LoaderHelper::getInstance());
     CCNode * node = ccbReader->readNodeGraphFromFile(fileName, this);
-    ccbReader->release();
     return node;
 }
 
@@ -231,7 +222,7 @@ void UIMgr::tryDealMsg()
 
 void UIMgr::syncUI()
 {
-    int gameState = (int)m_pLogic->getState();
+    int gameState = (int)InstanceMgr::mainLogic->getState();
     if(m_nGameState == gameState)
         return;
 
@@ -263,30 +254,19 @@ void UIMgr::clearImgCache()
     CCTextureCache::purgeSharedTextureCache();
 }
 
-void UIMgr::bindLogic( MainLogic* pLogic )
-{
-    CCAssert(pLogic,"");
-    m_pLogic = pLogic;
-}
-
-UIMgr* UIMgr::instance()
+UIMgr* UIMgr::getInstance()
 {
     if(!s_pUIMgr)
     {
         s_pUIMgr = new UIMgr;
-        if(s_pUIMgr && s_pUIMgr->init())
-            return s_pUIMgr;
-        else
-        {
+        if(!s_pUIMgr || !s_pUIMgr->init())
             CC_SAFE_DELETE(s_pUIMgr);
-            return NULL;
-        }
     }
 
     return s_pUIMgr;
 }
 
-void UIMgr::killInstance()
+void UIMgr::freeInstance()
 {
     CC_SAFE_DELETE(s_pUIMgr);
 }

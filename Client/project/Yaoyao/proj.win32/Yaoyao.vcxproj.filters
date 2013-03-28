@@ -95,6 +95,12 @@
     <ClCompile Include="..\Classes\view\LayerMain.cpp">
       <Filter>Classes\view</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\assist\LoaderHelper.cpp">
+      <Filter>Classes\assist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\assist\InstanceMgr.cpp">
+      <Filter>Classes\assist</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -165,6 +171,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\view\LayerMain.h">
       <Filter>Classes\view</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\assist\LoaderHelper.h">
+      <Filter>Classes\assist</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\assist\InstanceMgr.h">
+      <Filter>Classes\assist</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

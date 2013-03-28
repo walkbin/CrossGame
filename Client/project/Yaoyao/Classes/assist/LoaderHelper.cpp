@@ -20,19 +20,58 @@
 	THE SOFTWARE.
 
 	created:	2013/03/28
-	filename: 	DBHelper.h
+	filename: 	LoaderHelper.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#pragma once
+#include "LoaderHelper.h"
 
-#include "config/Global.h"
+//project view
+#include "view/LayerLogo.h"
+#include "view/LayerLoading.h"
+#include "view/LayerMain.h"
+#include "view/RollPannel.h"
+#include "view/RollSmallPannel.h"
+#include "view/RollLargePannel.h"
 
 NS_WALKBIN_BEGIN
 
+LoaderHelper* LoaderHelper::s_pHelper = NULL;
 
+LoaderHelper* LoaderHelper::getInstance()
+{
+    if(!s_pHelper)
+    {
+        s_pHelper = new LoaderHelper;
+        if(!s_pHelper)
+        {
+            CC_SAFE_DELETE(s_pHelper);
+        }
+        else
+        {
+            s_pHelper->registerDefaultCCNodeLoaders();
+        }
+    }
 
+    return s_pHelper;
+}
 
+void LoaderHelper::freeInstance()
+{
+    CC_SAFE_DELETE(s_pHelper);
+}
+
+void LoaderHelper::registerDefaultCCNodeLoaders()
+{
+    NodeLoaderLibrary::registerDefaultCCNodeLoaders();
+
+    //project
+    registerCCNodeLoader("logolayer",LayerLogoLoader::loader());
+    registerCCNodeLoader("loadinglayer",LayerLoadingLoader::loader());
+    registerCCNodeLoader("rollpanellayer",LayerMainLoader::loader());
+    registerCCNodeLoader("rollsmall",RollSmallPannelLoader::loader());
+    registerCCNodeLoader("rolllarge",RollLargePannelLoader::loader());
+}
 
 NS_WALKBIN_END

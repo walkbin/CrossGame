@@ -34,13 +34,9 @@ NS_WALKBIN_BEGIN
 class NodeLoaderLibrary : public CCNodeLoaderLibrary
 {
 public:
-    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(NodeLoaderLibrary, library);
-    static NodeLoaderLibrary * newDefaultCCNodeLoaderLibrary();
-
-    NodeLoaderLibrary(void);
-    virtual ~NodeLoaderLibrary(void);
-
-    void registerDefaultCCNodeLoaders();
+    NodeLoaderLibrary();
+    virtual ~NodeLoaderLibrary();
+    virtual void registerDefaultCCNodeLoaders();
 };
 
 NS_WALKBIN_END

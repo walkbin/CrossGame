@@ -129,25 +129,18 @@ bool LangMgr::isLangSupported(int language) const
     return true;
 }
 
-LangMgr* LangMgr::instance()
+LangMgr* LangMgr::getInstance()
 {
     if(!s_pMgr)
     {
         s_pMgr = new LangMgr();
-        if(s_pMgr && s_pMgr->init(s_pMgr->m_nCurLanguage))
-        {
-            return s_pMgr;
-        }
-        else
-        {
+        if(!s_pMgr || !s_pMgr->init(s_pMgr->m_nCurLanguage))
             CC_SAFE_FREE(s_pMgr);
-            return NULL;
-        }
     }
     return s_pMgr;
 }
 
-void LangMgr::killInstance()
+void LangMgr::freeInstance()
 {
     CC_SAFE_FREE(s_pMgr);
 }
@@ -157,7 +150,7 @@ void LangMgr::setLang( int langId )
     if(s_pMgr->m_nCurLanguage == langId)
         return;
 
-    killInstance();
+    freeInstance();
     s_pMgr = new LangMgr();
     if(s_pMgr)
         s_pMgr->init(langId);

@@ -37,11 +37,6 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
-
-private:
-    UIMgr* m_pUIMgr;
-    LangMgr* m_pLangMgr;
-    MainLogic* m_pLogic;
 };
 
 #endif // _APP_DELEGATE_H_

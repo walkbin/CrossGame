@@ -44,7 +44,7 @@ void LabelTTFLoader::onHandlePropTypeText(CCNode * pNode, CCNode * pParent, cons
 {
     if(strcmp(pPropertyName, PROPERTY_STRING) == 0)
     {
-        std::string __txt = LangMgr::instance()->findTxt(pText);
+        std::string __txt = LangMgr::getInstance()->findTxt(pText);
         if(__txt == "")
             ((CCLabelTTF *)pNode)->setString(pText);
         else

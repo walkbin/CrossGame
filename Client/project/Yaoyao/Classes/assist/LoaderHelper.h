@@ -20,7 +20,7 @@
 	THE SOFTWARE.
 
 	created:	2013/03/28
-	filename: 	DBHelper.h
+	filename: 	LoaderHelper.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
@@ -28,11 +28,20 @@
 #pragma once
 
 #include "config/Global.h"
+#include "base/NodeLoaderLibrary.h"
 
 NS_WALKBIN_BEGIN
 
+class LoaderHelper : public NodeLoaderLibrary
+{
+public:
+    static LoaderHelper* getInstance();
+    static void freeInstance();
 
-
+    virtual void registerDefaultCCNodeLoaders();
+private:
+    static LoaderHelper* s_pHelper;
+};
 
 
 NS_WALKBIN_END

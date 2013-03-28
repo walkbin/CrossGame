@@ -3,24 +3,20 @@
 #include <string>
 
 #include "config/AppMacros.h"
-#include "controller/UIMgr.h"
+#include "assist/InstanceMgr.h"
 
 USING_NS_CC;
 using namespace std;
 using namespace walkbin;
 
 AppDelegate::AppDelegate()
-    :m_pUIMgr(UIMgr::instance())
-    ,m_pLangMgr(LangMgr::instance())
-    ,m_pLogic(MainLogic::instance())
 {
+    InstanceMgr::create();
 }
 
 AppDelegate::~AppDelegate() 
 {
-    UIMgr::killInstance();
-    LangMgr::killInstance();
-    MainLogic::killInstance();
+    InstanceMgr::destroy();
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
@@ -64,11 +60,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setDisplayStats(true);
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
+
+    InstanceMgr::create();
+
     // create a scene. it's an autorelease object
-    CCScene *pScene = m_pUIMgr->getScene();
-    // run
-    m_pUIMgr->bindLogic(m_pLogic);
-    m_pLogic->setState(STATE_LOGO);
+    CCScene *pScene = InstanceMgr::uiMgr->getScene();
+    InstanceMgr::mainLogic->startState();
     pDirector->runWithScene(pScene);
     return true;
 }

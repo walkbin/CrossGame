@@ -31,13 +31,11 @@
 #include <string>
 #include "base/BaseScene.h"
 
-#define UI_SEND_MSG(_msg) walkbin::UIMgr::instance()->sendMsg(_msg)
-#define UI_POST_MSG(_msg) walkbin::UIMgr::instance()->postMsg(_msg)
-#define UI_CACHE_IMG(_path) walkbin::UIMgr::instance()->cacheImg(_path)
+#define UI_SEND_MSG(_msg) walkbin::UIMgr::getInstance()->sendMsg(_msg)
+#define UI_POST_MSG(_msg) walkbin::UIMgr::getInstance()->postMsg(_msg)
+#define UI_CACHE_IMG(_path) walkbin::UIMgr::getInstance()->cacheImg(_path)
 
 NS_WALKBIN_BEGIN
-
-class MainLogic;
 
 enum UINotify
 {
@@ -103,14 +101,13 @@ class UIMgr : public CCObject
 {
 public:
 
-    static UIMgr* instance();
-    static void killInstance();
+    static UIMgr* getInstance();
+    static void freeInstance();
 
     UIMgr();
     virtual ~UIMgr();
 
     virtual bool init();
-    void bindLogic(MainLogic* pLogic);
     BaseScene* getScene(){return m_pScene;}
     void sendMsg(UIMsg msg);
     void postMsg(UIMsg msg);
@@ -132,7 +129,6 @@ protected:
 
 private:
     static UIMgr* s_pUIMgr;
-    MainLogic* m_pLogic;
     cocos2d::CCScheduler* m_pScheduler;
     BaseScene* m_pScene;
     std::vector<UIView> m_vLayers;
