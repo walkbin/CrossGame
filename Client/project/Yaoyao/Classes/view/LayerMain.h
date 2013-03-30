@@ -31,8 +31,7 @@
 
 NS_WALKBIN_BEGIN
 
-class RollLargePannel;
-class RollSmallPannel;
+class LayerRoll;
 
 class LayerMain : public BaseLayer
 {
@@ -47,9 +46,9 @@ public:
     virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char * pSelectorName);
 
     void onBtnStartClicked(CCObject* pSender, CCControlEvent event);
+    virtual void setCouldTouch(bool flag);
 private:
-    RollLargePannel* m_pLargePanel;
-    RollSmallPannel* m_pSmallPanel;
+    LayerRoll* m_pRoll;
     CCControlButton* m_pBtnStart;
 };
 

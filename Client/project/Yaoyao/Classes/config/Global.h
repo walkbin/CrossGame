@@ -37,5 +37,5 @@ USING_NS_CC_EXT;
 #define NS_WALKBIN_END       }//namespace walkbin
 
 
-#define ITEMS_IN_LARGE_PANEL        8
+#define ITEMS_IN_LARGE_PANEL        6
 #define ITEMS_IN_SMALL_PANEL        4

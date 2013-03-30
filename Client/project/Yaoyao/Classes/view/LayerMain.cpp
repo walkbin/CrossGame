@@ -26,23 +26,20 @@
 	purpose:	
 *********************************************************************/
 #include "LayerMain.h"
-#include "RollLargePannel.h"
-#include "RollSmallPannel.h"
+#include "LayerRoll.h"
 
 NS_WALKBIN_BEGIN
 
 LayerMain::LayerMain()
-:m_pLargePanel(NULL)
-,m_pSmallPanel(NULL)
-,m_pBtnStart(NULL)
+:m_pBtnStart(NULL)
+,m_pRoll(NULL)
 {
 
 }
 
 LayerMain::~LayerMain()
 {
-    CC_SAFE_RELEASE(m_pLargePanel);
-    CC_SAFE_RELEASE(m_pSmallPanel);
+    CC_SAFE_RELEASE(m_pRoll);
     CC_SAFE_RELEASE(m_pBtnStart);
 }
 
@@ -53,9 +50,8 @@ void LayerMain::onEnter()
 
 bool LayerMain::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
 {
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",RollLargePannel*,m_pLargePanel);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mSmall",RollSmallPannel*,m_pSmallPanel);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mBtn",CCControlButton*,m_pBtnStart);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mRoll",LayerRoll*,m_pRoll);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mBtnStart",CCControlButton*,m_pBtnStart);
     return false;
 }
 
@@ -67,8 +63,15 @@ cocos2d::extension::SEL_CCControlHandler LayerMain::onResolveCCBCCControlSelecto
 
 void LayerMain::onBtnStartClicked(CCObject* pSender, CCControlEvent event)
 {
-    m_pLargePanel->startRoll();
-    m_pSmallPanel->startRoll();
+    m_pRoll->startRoll();
+}
+
+void LayerMain::setCouldTouch( bool flag )
+{
+    BaseLayerInfo pAy[] = {BaseLayerInfo(this,false),
+                                        BaseLayerInfo(m_pBtnStart,false)};
+    std::vector<BaseLayerInfo> vArray(pAy,pAy+1);
+    setCouldTouchWithArray(vArray,flag);
 }
 
 NS_WALKBIN_END

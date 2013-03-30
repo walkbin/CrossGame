@@ -31,6 +31,7 @@
 #include "view/LayerLogo.h"
 #include "view/LayerLoading.h"
 #include "view/LayerMain.h"
+#include "view/LayerRoll.h"
 #include "view/RollPannel.h"
 #include "view/RollSmallPannel.h"
 #include "view/RollLargePannel.h"
@@ -70,6 +71,7 @@ void LoaderHelper::registerDefaultCCNodeLoaders()
     registerCCNodeLoader("logolayer",LayerLogoLoader::loader());
     registerCCNodeLoader("loadinglayer",LayerLoadingLoader::loader());
     registerCCNodeLoader("rollpanellayer",LayerMainLoader::loader());
+    registerCCNodeLoader("rollpanel",LayerRollLoader::loader());
     registerCCNodeLoader("rollsmall",RollSmallPannelLoader::loader());
     registerCCNodeLoader("rolllarge",RollLargePannelLoader::loader());
 }

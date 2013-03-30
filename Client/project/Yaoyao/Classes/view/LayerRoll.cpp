@@ -19,50 +19,50 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	created:	2013/03/25
-	filename: 	RollLargePannel.cpp
+	created:	2013/03/24
+	filename: 	LayerRoll.cpp
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
+#include "LayerRoll.h"
+#include "controller/UIMgr.h"
+#include "model/MainLogic.h"
 #include "RollLargePannel.h"
+#include "RollSmallPannel.h"
+
 
 NS_WALKBIN_BEGIN
 
-RollLargePannel::RollLargePannel()
+LayerRoll::LayerRoll()
+:m_pLarge(NULL)
+,m_pSmall(NULL)
 {
-    for (size_t i = 0; i < m_aTxts.size(); i++)
-    {
-        m_aTxts[i] = NULL;
-    }
+
 }
 
-RollLargePannel::~RollLargePannel()
+LayerRoll::~LayerRoll()
 {
-    for (size_t i = 0; i < m_aTxts.size(); i++)
-    {
-        CC_SAFE_RELEASE(m_aTxts[i]);
-    }
+    CC_SAFE_RELEASE(m_pLarge);
+    CC_SAFE_RELEASE(m_pSmall);
 }
 
-void RollLargePannel::onEnter()
+bool LayerRoll::init()
 {
-    RollPannel::onEnter();
-    setb2World();
-    setIsClockwise(true);
-    setMotionParam(2.0f,1.0f,10.0f);
+    return true;
 }
 
-bool RollLargePannel::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
+bool LayerRoll::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
 {
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt1",CCLabelTTF*,m_aTxts[0]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt2",CCLabelTTF*,m_aTxts[1]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt3",CCLabelTTF*,m_aTxts[2]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt4",CCLabelTTF*,m_aTxts[3]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt5",CCLabelTTF*,m_aTxts[4]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt6",CCLabelTTF*,m_aTxts[5]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",CCSprite*,m_pSprite);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",RollLargePannel*,m_pLarge);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mSmall",RollSmallPannel*,m_pSmall);
     return false;
+}
+
+void LayerRoll::startRoll()
+{
+    m_pLarge->startRoll();
+    m_pSmall->startRoll();
 }
 
 NS_WALKBIN_END

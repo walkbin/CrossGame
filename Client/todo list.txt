@@ -1,0 +1,2 @@
+用rapidxml取代libxml2
+增加异步读取资源

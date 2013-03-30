@@ -19,50 +19,43 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-	created:	2013/03/25
-	filename: 	RollLargePannel.cpp
+	created:	2013/03/24
+	filename: 	LayerRoll.h
 	author:		Richie.Wang@walkbin
 	
 	purpose:	
 *********************************************************************/
-#include "RollLargePannel.h"
+#pragma once
+
+#include "base/BaseLayer.h"
 
 NS_WALKBIN_BEGIN
 
-RollLargePannel::RollLargePannel()
-{
-    for (size_t i = 0; i < m_aTxts.size(); i++)
-    {
-        m_aTxts[i] = NULL;
-    }
-}
+class RollLargePannel;
+class RollSmallPannel;
 
-RollLargePannel::~RollLargePannel()
+class LayerRoll : public BaseLayer
 {
-    for (size_t i = 0; i < m_aTxts.size(); i++)
-    {
-        CC_SAFE_RELEASE(m_aTxts[i]);
-    }
-}
+public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(LayerRoll,create);
 
-void RollLargePannel::onEnter()
-{
-    RollPannel::onEnter();
-    setb2World();
-    setIsClockwise(true);
-    setMotionParam(2.0f,1.0f,10.0f);
-}
+    LayerRoll();
+    virtual ~LayerRoll();
+    virtual bool init();
+    virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
+    void startRoll();
+private:
+    RollLargePannel* m_pLarge;
+    RollSmallPannel* m_pSmall;
+};
 
-bool RollLargePannel::onAssignCCBMemberVariable( CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode )
-{
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt1",CCLabelTTF*,m_aTxts[0]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt2",CCLabelTTF*,m_aTxts[1]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt3",CCLabelTTF*,m_aTxts[2]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt4",CCLabelTTF*,m_aTxts[3]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt5",CCLabelTTF*,m_aTxts[4]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mTxt6",CCLabelTTF*,m_aTxts[5]);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE(this,"mLarge",CCSprite*,m_pSprite);
-    return false;
-}
+class LayerRollLoader : public cocos2d::extension::CCLayerLoader {
+public:
+    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(LayerRollLoader, loader);
+
+protected:
+    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(LayerRoll);
+};
+
 
 NS_WALKBIN_END
